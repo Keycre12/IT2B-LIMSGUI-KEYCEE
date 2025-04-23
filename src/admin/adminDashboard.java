@@ -5,6 +5,10 @@
  */
 package admin;
 
+import config.Session;
+import javax.swing.JOptionPane;
+import limsgui.loginForm;
+
 /**
  *
  * @author Keycee Bolambot
@@ -28,40 +32,47 @@ public class adminDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         navi = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        gouser = new javax.swing.JButton();
+        ufname = new javax.swing.JLabel();
+        ulname = new javax.swing.JLabel();
         Mainpanel = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        gouser = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         navi.setBackground(new java.awt.Color(102, 102, 102));
         navi.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         navi.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logosmallerver.png"))); // NOI18N
-        navi.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 150, 110));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userrs.png"))); // NOI18N
-        navi.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 50, 50));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/sluser.png"))); // NOI18N
+        jPanel1.add(jLabel2);
 
-        gouser.setBackground(new java.awt.Color(102, 102, 102));
-        gouser.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        gouser.setText("USERS");
-        gouser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                gouserMouseClicked(evt);
-            }
-        });
-        gouser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gouserActionPerformed(evt);
-            }
-        });
-        navi.add(gouser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 130, 50));
+        navi.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 140, 140));
+
+        ufname.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ufname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ufname.setText("USER");
+        navi.add(ufname, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 140, -1));
+
+        ulname.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ulname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ulname.setText("USER");
+        navi.add(ulname, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 140, -1));
 
         getContentPane().add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 280, 570));
 
@@ -81,13 +92,50 @@ public class adminDashboard extends javax.swing.JFrame {
 
         Mainpanel.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 80));
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/logosmallerver.png"))); // NOI18N
+        Mainpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 90, 150, 110));
+
+        gouser.setBackground(new java.awt.Color(102, 102, 102));
+        gouser.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        gouser.setText("USERS");
+        gouser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gouserMouseClicked(evt);
+            }
+        });
+        gouser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gouserActionPerformed(evt);
+            }
+        });
+        Mainpanel.add(gouser, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 130, 50));
+
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/peeps.png"))); // NOI18N
+        jPanel2.add(jLabel3);
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel4.setText("USERS");
+        jPanel2.add(jLabel4);
+
+        Mainpanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 190, 210));
+
         getContentPane().add(Mainpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 650));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void gouserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gouserActionPerformed
-
+        adminUsers adu = new adminUsers();
+        adu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_gouserActionPerformed
 
     private void gouserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gouserMouseClicked
@@ -95,6 +143,29 @@ public class adminDashboard extends javax.swing.JFrame {
        adu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_gouserMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Session ses = Session.getInstance();
+      
+
+        if (ses.getUid() == 0) {
+            JOptionPane.showMessageDialog(null, "No account, Login First!");
+            loginForm lf = new loginForm();
+            lf.setVisible(true);
+            this.dispose();
+        }else{
+            
+        ufname.setText(""+ses.getFname());
+        ulname.setText(""+ses.getLname());
+        }
+
+    }//GEN-LAST:event_formWindowActivated
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        adminUsers adu = new adminUsers();
+        adu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jPanel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -137,7 +208,13 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton gouser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel navi;
+    private javax.swing.JLabel ufname;
+    private javax.swing.JLabel ulname;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,8 @@
 package limsgui;
 
 import config.dbConnect;
+import config.passwordHasher;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
@@ -66,7 +68,6 @@ public class registrationForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         un = new javax.swing.JTextField();
-        pass = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -85,6 +86,7 @@ public class registrationForm extends javax.swing.JFrame {
         userlab = new javax.swing.JLabel();
         type = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
+        passs = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,11 +110,11 @@ public class registrationForm extends javax.swing.JFrame {
         navi.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/logo.png"))); // NOI18N
         navi.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 570));
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/books.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/books.png"))); // NOI18N
         navi.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 570));
 
         Mainpanel.add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 510, 570));
@@ -143,20 +145,6 @@ public class registrationForm extends javax.swing.JFrame {
             }
         });
         Mainpanel.add(un, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, 260, 40));
-
-        pass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        pass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
-            }
-        });
-        pass.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                passKeyReleased(evt);
-            }
-        });
-        Mainpanel.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 470, 260, 40));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton1.setText("Cancel");
@@ -219,7 +207,7 @@ public class registrationForm extends javax.swing.JFrame {
         lnlab.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         lnlab.setForeground(new java.awt.Color(204, 0, 0));
         lnlab.setText(" ");
-        Mainpanel.add(lnlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, 170, -1));
+        Mainpanel.add(lnlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, 260, -1));
 
         fname.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         fname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -277,12 +265,20 @@ public class registrationForm extends javax.swing.JFrame {
         userlab.setText(" ");
         Mainpanel.add(userlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 450, 170, -1));
 
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Librarian", "Staff", " " }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Librarian", "Staff" }));
         Mainpanel.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 530, 260, 40));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel11.setText("Password:");
         Mainpanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 90, 40));
+
+        passs.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        passs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passsKeyReleased(evt);
+            }
+        });
+        Mainpanel.add(passs, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 470, 260, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -322,7 +318,7 @@ public class registrationForm extends javax.swing.JFrame {
         || email.getText().isEmpty() 
         || phone.getText().isEmpty()
         || un.getText().isEmpty() 
-        || pass.getText().isEmpty()) {
+        || passs.getText().isEmpty()) {
         JOptionPane.showMessageDialog(null, "All fields are required");
         return;
     } else if (duplicateCheck()) {
@@ -330,16 +326,23 @@ public class registrationForm extends javax.swing.JFrame {
          return;
     } else {
         dbConnect dbc = new dbConnect();
+        try{
+            String pass = passwordHasher.hashPassword(passs.getText());
+      
         if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_contact, u_email, u_un, u_pass, u_type, status)"
                 + "VALUES('" + fname.getText() + "','" + lname.getText() + "', '" + phone.getText() + "',"
-                + " '" + email.getText() + "', '" + un.getText() + "', '" + pass.getText() + "',"
+                + " '" + email.getText() + "', '" + un.getText() + "', '" + pass + "',"
                 + " '" + type.getSelectedItem() + "', 'Pending')") == 0) {
         } else {
             JOptionPane.showMessageDialog(null, "Registered Successfully!");
             loginForm lfr = new loginForm();
             lfr.setVisible(true);
             this.dispose();
+        } 
+        }catch(NoSuchAlgorithmException ex){
+            System.out.println(""+ex);
         }
+            
 }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -351,21 +354,16 @@ public class registrationForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fnameActionPerformed
 
-    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
-        
-    }//GEN-LAST:event_passActionPerformed
-
     private void lnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lnameKeyReleased
-        String PATTERN = "^[a-zA-Z ]{2,30}$"; 
+        String PATTERN = "^[A-Z][a-zA-Z ]{2,30}$";
         Pattern pt = Pattern.compile(PATTERN);
-        Matcher match = pt.matcher(fname.getText());
-         if (!match.matches()){
-            lnlab.setText("Last Name is incorrect");
-        }
-         else{
-             lnlab.setText(null);
-         }
-                
+        Matcher match = pt.matcher(lname.getText());
+
+        if (!match.matches()) {
+            lnlab.setText("First Name is incorrect.");
+        } else {
+            lnlab.setText(null);
+        }           
         
     }//GEN-LAST:event_lnameKeyReleased
     private static HashSet<String> existingEmails = new HashSet<>();
@@ -400,30 +398,16 @@ public class registrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_phoneKeyReleased
 
     private void fnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fnameKeyReleased
-        // TODO add your handling code here:
-        String PATTERN = "^[a-zA-Z ]{2,30}$"; 
+        String PATTERN = "^[A-Z][a-zA-Z ]{2,30}$";
         Pattern pt = Pattern.compile(PATTERN);
         Matcher match = pt.matcher(fname.getText());
 
         if (!match.matches()) {
-            fnlab.setText("First Name is incorrect..");
+            fnlab.setText("First Name is incorrect.");
         } else {
             fnlab.setText(null);
-}
-        
+        }
     }//GEN-LAST:event_fnameKeyReleased
-
-    private void passKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyReleased
-        String PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d!@#$%^&*()_+\\-=]{8,30}$";
-        Pattern pt = Pattern.compile(PATTERN);
-        Matcher match = pt.matcher(pass.getText());
-        if (!match.matches()){
-            pslab.setText("Password too short, at least be 8 characters long");
-        }
-        else{
-            pslab.setText(null);
-        }
-    }//GEN-LAST:event_passKeyReleased
 
     private void unKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unKeyReleased
         String USERNAME_PATTERN = "^[a-zA-Z0-9._]{5,20}$"; 
@@ -438,6 +422,18 @@ public class registrationForm extends javax.swing.JFrame {
             userlab.setText(null);
         }
     }//GEN-LAST:event_unKeyReleased
+
+    private void passsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passsKeyReleased
+         String PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d!@#$%^&*()_+\\-=]{8,30}$";
+        Pattern pt = Pattern.compile(PATTERN);
+        Matcher match = pt.matcher(passs.getText());
+        if (!match.matches()){
+            pslab.setText("Password too short, at least be 8 characters long");
+        }
+        else{
+            pslab.setText(null);
+        }
+    }//GEN-LAST:event_passsKeyReleased
 
     /**
      * @param args the command line arguments
@@ -497,7 +493,7 @@ public class registrationForm extends javax.swing.JFrame {
     private javax.swing.JTextField lname;
     private javax.swing.JLabel lnlab;
     private javax.swing.JPanel navi;
-    private javax.swing.JPasswordField pass;
+    private javax.swing.JPasswordField passs;
     private javax.swing.JTextField phone;
     private javax.swing.JLabel phonelab;
     private javax.swing.JLabel pslab;

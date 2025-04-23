@@ -5,13 +5,17 @@
  */
 package limsgui;
 
-import admin.UserDashboard;
 import admin.adminDashboard;
+import config.Session;
 import config.dbConnect;
+import config.passwordHasher;
+import static config.passwordHasher.hashPassword;
 import java.awt.Color;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import user.UserDashboard;
 
 /**
  *
@@ -31,18 +35,36 @@ public class loginForm extends javax.swing.JFrame {
    public static boolean loginAcc(String username, String passs ){
        dbConnect dbc = new dbConnect();
        try{
-            String query = "SELECT * FROM users  WHERE u_un = '" + username + "' AND u_pass = '" + passs + "'";
-            ResultSet resultSet = dbc.getData(query);
-           if(resultSet.next()){
-               status = resultSet.getString("status");
-               type = resultSet.getString("u_type");
-               return true;
-           }else{
-               return false;
-           }
-        }catch (SQLException ex) {
+        String query = "SELECT * FROM users  WHERE u_un = '" + username + "'";
+        ResultSet resultSet = dbc.getData(query);
+        if(resultSet.next()){
+            
+        String hashedPass = (resultSet.getString("u_pass"));
+        String rehashedPass = passwordHasher.hashPassword(passs);
+        if(hashedPass.equals(rehashedPass)){
+            status = resultSet.getString("status");
+            type = resultSet.getString("u_type");
+            Session ses = Session.getInstance();
+            ses.setUid(resultSet.getInt("u_id"));
+            ses.setFname(resultSet.getString("u_fname"));
+            ses.setLname(resultSet.getString("u_lname"));
+            ses.setContact(resultSet.getString("u_contact"));
+            ses.setEmail(resultSet.getString("u_email"));
+            ses.setUsername(resultSet.getString("u_un"));
+            ses.setType(resultSet.getString("u_type"));
+            ses.setStatus(resultSet.getString("status"));
+            System.out.println(""+ses.getUid());
+            return true;
+             }else{
+            System.out.println("Password Don't Match");
             return false;
-        }
+           }
+       }else{
+           return false;
+       }
+       }catch (SQLException | NoSuchAlgorithmException ex){
+           return false;
+       }
    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -63,6 +85,7 @@ public class loginForm extends javax.swing.JFrame {
         login = new javax.swing.JPanel();
         blexit = new javax.swing.JButton();
         blogin = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,11 +110,11 @@ public class loginForm extends javax.swing.JFrame {
         navi.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/logo.png"))); // NOI18N
         navi.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 570));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/books.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/books.png"))); // NOI18N
         navi.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 570));
 
         Mainpanel.add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 510, 570));
@@ -157,6 +180,13 @@ public class loginForm extends javax.swing.JFrame {
         });
         Mainpanel.add(blogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 440, 100, 40));
 
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        Mainpanel.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 360, -1, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,12 +230,12 @@ public class loginForm extends javax.swing.JFrame {
               }else{
            JOptionPane.showMessageDialog(null,"Login Success!");
             if(type.equals("Librarian")){
-           adminDashboard ads =new adminDashboard();
+           adminDashboard ads = new adminDashboard();
            ads.setVisible(true);
            this.dispose();
               }else if(type.equals("Staff")){
-               UserDashboard usrd = new UserDashboard();
-               usrd.setVisible(true);
+               UserDashboard ud = new UserDashboard();
+               ud.setVisible(true);
                this.dispose();
               }else{
                 JOptionPane.showMessageDialog(null,"No Account type found, Contact the Admin");
@@ -222,6 +252,13 @@ public class loginForm extends javax.swing.JFrame {
         adm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bloginMouseClicked
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if (passs.getEchoChar() == '*') {
+                passs.setEchoChar((char) 0); // Show password
+            } else {
+                passs.setEchoChar('*'); // Hide password
+    }    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,6 +300,7 @@ public class loginForm extends javax.swing.JFrame {
     private javax.swing.JPanel Mainpanel;
     private javax.swing.JButton blexit;
     private javax.swing.JButton blogin;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
