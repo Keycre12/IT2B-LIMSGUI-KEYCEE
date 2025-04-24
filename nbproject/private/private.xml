@@ -4,21 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/config/Session.java</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/limsgui/images/books.png</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/limsgui/images/userrs.png</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/limsgui/images/logosmallerver.png</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/user/changePass.java</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/user/accDetails.java</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/admin/adminUsers.java</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/user/UserDashboard.java</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/config/dbConnect.java</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/limsgui/registrationForm.java</file>
             <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/limsgui/loginForm.java</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/limsgui/images/userb.png</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/limsgui/images/logo.png</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/admin/createUserForm.java</file>
+            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/limsgui/forgotpass.java</file>
             <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/admin/adminDashboard.java</file>
-            <file>file:/C:/Users/Keycee%20Bolambot/OneDrive/Desktop/kclimss/IT2B-LIMSGUI-KEYCEE/src/config/passwordHasher.java</file>
         </group>
     </open-files>
 </project-private>

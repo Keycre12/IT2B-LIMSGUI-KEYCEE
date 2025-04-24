@@ -64,7 +64,6 @@ public class registrationForm extends javax.swing.JFrame {
         navi = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         un = new javax.swing.JTextField();
@@ -87,6 +86,10 @@ public class registrationForm extends javax.swing.JFrame {
         type = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         passs = new javax.swing.JPasswordField();
+        jLabel12 = new javax.swing.JLabel();
+        secq = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        ans = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,7 +103,7 @@ public class registrationForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("WELCOME TO MY SYSTEM!");
+        jLabel1.setText("REGISTRATION FORM");
         Header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 840, 80));
 
         Mainpanel.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 80));
@@ -119,14 +122,9 @@ public class registrationForm extends javax.swing.JFrame {
 
         Mainpanel.add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 510, 570));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Registration Form");
-        Mainpanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 420, 50));
-
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Username:");
-        Mainpanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 90, 40));
+        Mainpanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 330, 90, 40));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("Type:");
@@ -144,7 +142,7 @@ public class registrationForm extends javax.swing.JFrame {
                 unKeyReleased(evt);
             }
         });
-        Mainpanel.add(un, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, 260, 40));
+        Mainpanel.add(un, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 330, 260, 40));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton1.setText("Cancel");
@@ -166,7 +164,7 @@ public class registrationForm extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("Last Name:");
-        Mainpanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, 90, 50));
+        Mainpanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 90, 50));
 
         email.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -180,15 +178,15 @@ public class registrationForm extends javax.swing.JFrame {
                 emailKeyReleased(evt);
             }
         });
-        Mainpanel.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 350, 260, 40));
+        Mainpanel.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, 260, 40));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel7.setText("Email:");
-        Mainpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, 90, 40));
+        Mainpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, 90, 40));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("First Name:");
-        Mainpanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 90, 50));
+        Mainpanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 90, 50));
 
         lname.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -202,12 +200,12 @@ public class registrationForm extends javax.swing.JFrame {
                 lnameKeyReleased(evt);
             }
         });
-        Mainpanel.add(lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, 260, 40));
+        Mainpanel.add(lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 150, 260, 40));
 
         lnlab.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         lnlab.setForeground(new java.awt.Color(204, 0, 0));
         lnlab.setText(" ");
-        Mainpanel.add(lnlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, 260, -1));
+        Mainpanel.add(lnlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, 260, -1));
 
         fname.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         fname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -221,11 +219,11 @@ public class registrationForm extends javax.swing.JFrame {
                 fnameKeyReleased(evt);
             }
         });
-        Mainpanel.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, 260, 40));
+        Mainpanel.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 260, 40));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setText("Contact:");
-        Mainpanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 110, 40));
+        Mainpanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 110, 40));
 
         phone.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         phone.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -239,38 +237,38 @@ public class registrationForm extends javax.swing.JFrame {
                 phoneKeyReleased(evt);
             }
         });
-        Mainpanel.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 260, 40));
+        Mainpanel.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 260, 40));
 
         pslab.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         pslab.setForeground(new java.awt.Color(204, 0, 0));
         pslab.setText(" ");
-        Mainpanel.add(pslab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, 170, -1));
+        Mainpanel.add(pslab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 430, 250, -1));
 
         fnlab.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         fnlab.setForeground(new java.awt.Color(204, 0, 0));
         fnlab.setText(" ");
-        Mainpanel.add(fnlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 170, -1));
+        Mainpanel.add(fnlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 260, -1));
 
         emlab.setForeground(new java.awt.Color(204, 0, 0));
         emlab.setText(" ");
-        Mainpanel.add(emlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 390, 170, -1));
+        Mainpanel.add(emlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, 260, 10));
 
         phonelab.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         phonelab.setForeground(new java.awt.Color(204, 0, 0));
         phonelab.setText(" ");
-        Mainpanel.add(phonelab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 330, 260, -1));
+        Mainpanel.add(phonelab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 250, 260, -1));
 
         userlab.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         userlab.setForeground(new java.awt.Color(204, 0, 0));
         userlab.setText(" ");
-        Mainpanel.add(userlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 450, 170, -1));
+        Mainpanel.add(userlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, 260, -1));
 
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Librarian", "Staff" }));
         Mainpanel.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 530, 260, 40));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel11.setText("Password:");
-        Mainpanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 90, 40));
+        Mainpanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 390, 80, 40));
 
         passs.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         passs.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -278,7 +276,27 @@ public class registrationForm extends javax.swing.JFrame {
                 passsKeyReleased(evt);
             }
         });
-        Mainpanel.add(passs, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 470, 260, 40));
+        Mainpanel.add(passs, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 390, 260, 40));
+
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jLabel12.setText("Answer:");
+        Mainpanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 500, -1, 20));
+
+        secq.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        secq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your nickname?", "What is your first pet name?", "What is your middle initial?" }));
+        Mainpanel.add(secq, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 450, 260, 30));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jLabel13.setText("Security Question:");
+        Mainpanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 460, -1, -1));
+
+        ans.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ansActionPerformed(evt);
+            }
+        });
+        Mainpanel.add(ans, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 492, 260, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -329,10 +347,16 @@ public class registrationForm extends javax.swing.JFrame {
         try{
             String pass = passwordHasher.hashPassword(passs.getText());
       
-        if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_contact, u_email, u_un, u_pass, u_type, status)"
-                + "VALUES('" + fname.getText() + "','" + lname.getText() + "', '" + phone.getText() + "',"
-                + " '" + email.getText() + "', '" + un.getText() + "', '" + pass + "',"
-                + " '" + type.getSelectedItem() + "', 'Pending')") == 0) {
+//        if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_contact, u_email, u_un, u_pass, u_type, status)"
+//                + "VALUES('" + fname.getText() + "','" + lname.getText() + "', '" + phone.getText() + "',"
+//                + " '" + email.getText() + "', '" + un.getText() + "', '" + pass + "',"
+//                + " '" + type.getSelectedItem() + "', 'Pending')") == 0) {
+        if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_contact, u_email, u_un, u_pass, u_type, status, securityq, answer) "
+        + "VALUES('" + fname.getText() + "', '" + lname.getText() + "', '" + phone.getText() + "',"
+        + " '" + email.getText() + "', '" + un.getText() + "', '" + pass + "',"
+        + " '" + type.getSelectedItem() + "', 'Pending', '" + secq.getSelectedItem() + "', '" + ans.getText() + "')") == 0) {
+
+
         } else {
             JOptionPane.showMessageDialog(null, "Registered Successfully!");
             loginForm lfr = new loginForm();
@@ -435,6 +459,10 @@ public class registrationForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_passsKeyReleased
 
+    private void ansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ansActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ansActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -473,6 +501,7 @@ public class registrationForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Mainpanel;
+    private javax.swing.JTextField ans;
     private javax.swing.JTextField email;
     private javax.swing.JLabel emlab;
     private javax.swing.JTextField fname;
@@ -482,8 +511,9 @@ public class registrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -497,6 +527,7 @@ public class registrationForm extends javax.swing.JFrame {
     private javax.swing.JTextField phone;
     private javax.swing.JLabel phonelab;
     private javax.swing.JLabel pslab;
+    private javax.swing.JComboBox<String> secq;
     private javax.swing.JComboBox<String> type;
     private javax.swing.JTextField un;
     private javax.swing.JLabel userlab;

@@ -86,6 +86,7 @@ public class loginForm extends javax.swing.JFrame {
         blexit = new javax.swing.JButton();
         blogin = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
+        fpass = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,19 +118,19 @@ public class loginForm extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/books.png"))); // NOI18N
         navi.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 570));
 
-        Mainpanel.add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 510, 570));
+        Mainpanel.add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 510, 570));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel3.setText("Login Form");
-        Mainpanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, 210, 50));
+        Mainpanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, 210, 50));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Username:");
-        Mainpanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 90, 50));
+        Mainpanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 90, 50));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("Password:");
-        Mainpanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 360, 90, 50));
+        Mainpanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 330, 90, 50));
 
         username.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -138,11 +139,11 @@ public class loginForm extends javax.swing.JFrame {
                 usernameActionPerformed(evt);
             }
         });
-        Mainpanel.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 260, 50));
+        Mainpanel.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 260, 260, 50));
 
         passs.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         passs.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Mainpanel.add(passs, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 360, 260, 50));
+        Mainpanel.add(passs, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 330, 260, 50));
 
         regs.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         regs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -152,7 +153,7 @@ public class loginForm extends javax.swing.JFrame {
                 regsMouseClicked(evt);
             }
         });
-        Mainpanel.add(regs, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 520, 260, -1));
+        Mainpanel.add(regs, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 560, 260, -1));
 
         login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         Mainpanel.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 430, -1, 40));
@@ -164,7 +165,7 @@ public class loginForm extends javax.swing.JFrame {
                 blexitActionPerformed(evt);
             }
         });
-        Mainpanel.add(blexit, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 440, 100, 40));
+        Mainpanel.add(blexit, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 430, 100, 40));
 
         blogin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         blogin.setText("Login");
@@ -178,14 +179,25 @@ public class loginForm extends javax.swing.JFrame {
                 bloginActionPerformed(evt);
             }
         });
-        Mainpanel.add(blogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 440, 100, 40));
+        Mainpanel.add(blogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 430, 100, 40));
 
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        Mainpanel.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 360, -1, 50));
+        Mainpanel.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 330, -1, 50));
+
+        fpass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        fpass.setForeground(new java.awt.Color(255, 0, 0));
+        fpass.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        fpass.setText("forgot password");
+        fpass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fpassMouseClicked(evt);
+            }
+        });
+        Mainpanel.add(fpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 390, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -260,6 +272,12 @@ public class loginForm extends javax.swing.JFrame {
                 passs.setEchoChar('*'); // Hide password
     }    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
+    private void fpassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fpassMouseClicked
+        forgotpass fp = new forgotpass();
+        fp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_fpassMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -300,6 +318,7 @@ public class loginForm extends javax.swing.JFrame {
     private javax.swing.JPanel Mainpanel;
     private javax.swing.JButton blexit;
     private javax.swing.JButton blogin;
+    private javax.swing.JLabel fpass;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
