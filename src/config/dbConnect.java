@@ -55,13 +55,33 @@ public class dbConnect {
         }
         
         //Function to retrieve data
-        public ResultSet getData(String sql) throws SQLException{
-            Statement stmt = connect.createStatement();
-            ResultSet rst = stmt.executeQuery(sql);
-            return rst;
+        public ResultSet getData(String sql, Object... params) {
+        try {
+            PreparedStatement statement = connect.prepareStatement(sql);
+            for (int i = 0; i < params.length; i++) {
+                statement.setObject(i + 1, params[i]);
+            }
+            return statement.executeQuery();
+        } catch (SQLException ex) {
+            System.err.println("Database error: " + ex);
+            JOptionPane.showMessageDialog(null, "Database error occurred!", "Error", JOptionPane.ERROR_MESSAGE);
+            return null; // Or throw an exception if appropriate
         }
+    }
+        
+        
+    public void closeConnection() {
+        try {
+            if (connect != null && !connect.isClosed()) {
+                connect.close();
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error closing connection: " + ex);
+        }
+    }
 
     public Connection getConnection() {
         return connect;
     }
+
 }

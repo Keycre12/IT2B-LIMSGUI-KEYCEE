@@ -12,8 +12,12 @@ import config.passwordHasher;
 import static config.passwordHasher.hashPassword;
 import java.awt.Color;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import user.UserDashboard;
 
@@ -66,6 +70,8 @@ public class loginForm extends javax.swing.JFrame {
            return false;
        }
    }
+   
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -111,11 +117,11 @@ public class loginForm extends javax.swing.JFrame {
         navi.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/logo.png"))); // NOI18N
-        navi.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 570));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        navi.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 510, 550));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/books.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/books.png"))); // NOI18N
         navi.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 570));
 
         Mainpanel.add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 510, 570));
@@ -191,7 +197,7 @@ public class loginForm extends javax.swing.JFrame {
         fpass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         fpass.setForeground(new java.awt.Color(255, 0, 0));
         fpass.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        fpass.setText("forgot password");
+        fpass.setText("Forgot Password? Click Here..");
         fpass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fpassMouseClicked(evt);
@@ -232,6 +238,9 @@ public class loginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_blexitActionPerformed
 
     private void bloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloginActionPerformed
+        String uname = username.getText().trim();
+        String pass = new String(passs.getPassword()).trim();
+        
         if (username.getText().isEmpty() || passs.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "All fields are required");
             return;
@@ -255,8 +264,48 @@ public class loginForm extends javax.swing.JFrame {
               }
        }else{
             JOptionPane.showMessageDialog(null,"Login Failed!");
-               
+           
         }
+    }
+
+        
+         public void logEvent(int userId, String username, String action) 
+    {
+        dbConnect dbc = new dbConnect();
+        Connection con = dbc.getConnection();
+        PreparedStatement pstmt = null;
+        Timestamp time = new Timestamp(new Date().getTime());
+
+        try 
+        {
+            String sql = "INSERT INTO logs (u_id, u_un, log_action, log_time) "
+                    + "VALUES ('" + userId + "', '" + username + "', '" + action + "', '" + time + "')";
+            pstmt = con.prepareStatement(sql);
+
+            pstmt.executeUpdate();
+            System.out.println("Login Log recorded successfully.");
+        } catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error recording log: " + e.getMessage());
+        } finally //This is a database closer
+        {
+            try 
+            {
+                if (pstmt != null) 
+                {
+                    pstmt.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+            } catch (SQLException e) 
+            {
+                JOptionPane.showMessageDialog(null, "Error closing resources: " + e.getMessage());
+            }
+        }
+    
+        
     }//GEN-LAST:event_bloginActionPerformed
 
     private void bloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloginMouseClicked

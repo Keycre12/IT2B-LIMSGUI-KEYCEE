@@ -84,7 +84,7 @@
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/limsgui/images/logosmallerver.png"/>
+          <Image iconType="3" name="/images/logosmallerver.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -205,7 +205,7 @@
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/limsgui/images/sluser.png"/>
+                  <Image iconType="3" name="/images/sluser.png"/>
                 </Property>
               </Properties>
             </Component>
