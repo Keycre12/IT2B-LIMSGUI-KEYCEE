@@ -322,9 +322,12 @@ public class adminUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_p_editMouseExited
 
     private void p_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_addMouseClicked
-       createUserForm cuf = new createUserForm();
-       cuf.setVisible(true);
+       createUserForm crf = new createUserForm();
+       crf.setVisible(true);
+       crf.remove.setEnabled(false);
+       crf.select.setEnabled(true);
        this.dispose();
+       
        
     }//GEN-LAST:event_p_addMouseClicked
 
@@ -337,7 +340,7 @@ public class adminUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_p_deleteMouseExited
 
     private void p_editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_editMouseClicked
-      int rowIndex = users_tbl.getSelectedRow();
+    int rowIndex = users_tbl.getSelectedRow();
 
     if (rowIndex < 0) {
         JOptionPane.showMessageDialog(null, "Please Select an Item");
@@ -347,19 +350,34 @@ public class adminUsers extends javax.swing.JFrame {
             TableModel tbl = users_tbl.getModel();
             ResultSet rs = dbc.getData("SELECT * FROM users WHERE u_id = '" + tbl.getValueAt(rowIndex, 0) + "'");
             if (rs.next()) {
-                createUserForm au = new createUserForm();
-                au.uid.setText(""+rs.getInt("u_id"));
-                au.fname.setText("" + rs.getString("u_fname"));
-                au.lname.setText("" + rs.getString("u_lname"));
-                au.phone.setText("" + rs.getString("u_contact"));
-                au.email.setText("" + rs.getString("u_email"));
-                au.un.setText("" + rs.getString("u_un"));
-                au.pass.setText("" + rs.getString("u_pass"));
-                au.type.setSelectedItem(""+rs.getString("u_type")); 
-                au.us.setSelectedItem(""+rs.getString("status")); 
-                au.uadd.setEnabled(false);
-                au.uupdate.setEnabled(true);
-                au.setVisible(true);
+                createUserForm crf = new createUserForm();
+                crf.uid.setText(""+rs.getInt("u_id"));
+                crf.fname.setText("" + rs.getString("u_fname"));
+                crf.lname.setText("" + rs.getString("u_lname"));
+                crf.phone.setText("" + rs.getString("u_contact"));
+                crf.email.setText("" + rs.getString("u_email"));
+                crf.un.setText("" + rs.getString("u_un"));
+                crf.pas.setText("" + rs.getString("u_pass"));
+                crf.type.setSelectedItem(""+rs.getString("u_type")); 
+                crf.us.setSelectedItem(""+rs.getString("status")); 
+                crf.image.setIcon(crf.ResizeImage(rs.getString("u_image"), null, crf.image));
+                crf.oldpath = rs.getString("u_image");
+                crf.path = rs.getString("u_image");
+                crf.destination = rs.getString("u_image");
+                crf.uadd.setEnabled(false);
+                crf.uupdate.setEnabled(true);
+                crf.pas.setEnabled(false);
+                crf.setVisible(true);
+                
+                if(rs.getString("u_image").isEmpty())
+                    {
+                        crf.select.setEnabled(true);
+                        crf.remove.setEnabled(false);
+                    }else
+                    {
+                        crf.select.setEnabled(false);
+                        crf.remove.setEnabled(true);
+                    }
                 this.dispose();
             }
         } catch (SQLException ex) {

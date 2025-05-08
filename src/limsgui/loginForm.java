@@ -20,6 +20,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import user.UserDashboard;
+import user.userGuest;
 
 /**
  *
@@ -93,6 +94,9 @@ public class loginForm extends javax.swing.JFrame {
         blogin = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         fpass = new javax.swing.JLabel();
+        guest = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,7 +111,7 @@ public class loginForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("WELCOME TO MY SYSTEM!");
+        jLabel1.setText("LIBRARY INVENTORY");
         Header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 840, 80));
 
         Mainpanel.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1013, 80));
@@ -159,7 +163,7 @@ public class loginForm extends javax.swing.JFrame {
                 regsMouseClicked(evt);
             }
         });
-        Mainpanel.add(regs, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 560, 260, -1));
+        Mainpanel.add(regs, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 530, 260, -1));
 
         login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         Mainpanel.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 430, -1, 40));
@@ -204,6 +208,26 @@ public class loginForm extends javax.swing.JFrame {
             }
         });
         Mainpanel.add(fpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 390, 260, -1));
+
+        guest.setBackground(new java.awt.Color(204, 204, 204));
+        guest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guestMouseClicked(evt);
+            }
+        });
+        guest.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guest.png"))); // NOI18N
+        guest.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("GUEST");
+        guest.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 20));
+
+        Mainpanel.add(guest, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 90, 70, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -327,6 +351,12 @@ public class loginForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_fpassMouseClicked
 
+    private void guestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guestMouseClicked
+        userGuest ug = new userGuest();
+        ug.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_guestMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -368,6 +398,7 @@ public class loginForm extends javax.swing.JFrame {
     private javax.swing.JButton blexit;
     private javax.swing.JButton blogin;
     private javax.swing.JLabel fpass;
+    private javax.swing.JPanel guest;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -375,6 +406,8 @@ public class loginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel login;
     private javax.swing.JPanel navi;
     private javax.swing.JPasswordField passs;

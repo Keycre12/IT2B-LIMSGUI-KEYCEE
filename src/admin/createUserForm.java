@@ -2,6 +2,7 @@
 package admin;
 
 import config.dbConnect;
+import config.passwordHasher;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -10,6 +11,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +20,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
@@ -39,61 +44,86 @@ public class createUserForm extends javax.swing.JFrame {
     File selectedFile;
     public String oldpath;
     public String path;
+    public String pic;
     
-    public int FileExistenceChecker(String path){
+    public int FileExistenceChecker(String path) {
         File file = new File(path);
         String fileName = file.getName();
-        
+
         Path filePath = Paths.get("src/userimages", fileName);
-        boolean fileExists = Files.exists(filePath);
-        
+         boolean fileExists = Files.exists(filePath);
+
         if (fileExists) {
             return 1;
         } else {
             return 0;
         }
-    
     }
+    
+    
     
     public static int getHeightFromWidth(String imagePath, int desiredWidth) {
         try {
             // Read the image file
             File imageFile = new File(imagePath);
             BufferedImage image = ImageIO.read(imageFile);
-            
+
             // Get the original width and height of the image
             int originalWidth = image.getWidth();
             int originalHeight = image.getHeight();
-            
+
             // Calculate the new height based on the desired width and the aspect ratio
             int newHeight = (int) ((double) desiredWidth / originalWidth * originalHeight);
-            
+
             return newHeight;
         } catch (IOException ex) {
             System.out.println("No image found!");
         }
-        
+
         return -1;
     }
-
-    public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
-    ImageIcon MyImage = null;
-        if(ImagePath !=null){
+    
+    
+    
+    public ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+        ImageIcon MyImage = null;
+        if (ImagePath != null) {
             MyImage = new ImageIcon(ImagePath);
-        }else{
+        } else {
             MyImage = new ImageIcon(pic);
         }
-        
-    int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
 
-    Image img = MyImage.getImage();
-    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
-    ImageIcon image = new ImageIcon(newImg);
-    return image;
-}
-    
-    
-    
+        int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
+
+    public void imageUpdater(String existingFilePath, String newFilePath) {
+        File existingFile = new File(existingFilePath);
+        if (existingFile.exists()) {
+            String parentDirectory = existingFile.getParent();
+            File newFile = new File(newFilePath);
+            String newFileName = newFile.getName();
+            File updatedFile = new File(parentDirectory, newFileName);
+            existingFile.delete();
+            try {
+                Files.copy(newFile.toPath(), updatedFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("Image updated successfully.");
+            } catch (IOException e) {
+                System.out.println("Error occurred while updating the image: " + e);
+            }
+        } else {
+            try {
+                Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                System.out.println("Error on update!");
+            }
+        }
+    }
+
      Color navcolor = new Color(102,102,102);
      Color hovercolor = new Color(204,204,204);
      
@@ -198,7 +228,6 @@ public class createUserForm extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         type = new javax.swing.JComboBox<>();
-        pass = new javax.swing.JPasswordField();
         pslab = new javax.swing.JLabel();
         userlab = new javax.swing.JLabel();
         emlab = new javax.swing.JLabel();
@@ -223,10 +252,13 @@ public class createUserForm extends javax.swing.JFrame {
         uadd = new javax.swing.JButton();
         uid = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        image = new javax.swing.JPanel();
+        JPanel = new javax.swing.JPanel();
+        image = new javax.swing.JLabel();
         remove = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         select = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        pas = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -276,20 +308,6 @@ public class createUserForm extends javax.swing.JFrame {
 
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Librarian", "Staff" }));
         Mainpanel.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, 260, 40));
-
-        pass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        pass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
-            }
-        });
-        pass.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                passKeyReleased(evt);
-            }
-        });
-        Mainpanel.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 260, 40));
 
         pslab.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         pslab.setForeground(new java.awt.Color(204, 0, 0));
@@ -541,18 +559,11 @@ public class createUserForm extends javax.swing.JFrame {
         jLabel14.setText("First Name:");
         Mainpanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 90, 50));
 
-        javax.swing.GroupLayout imageLayout = new javax.swing.GroupLayout(image);
-        image.setLayout(imageLayout);
-        imageLayout.setHorizontalGroup(
-            imageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
-        );
-        imageLayout.setVerticalGroup(
-            imageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
-        );
+        JPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(8, 8, 8, 8, new java.awt.Color(0, 0, 0)));
+        JPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        JPanel.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 220, 300));
 
-        Mainpanel.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, 240, 320));
+        Mainpanel.add(JPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, 240, 320));
 
         remove.setBackground(new java.awt.Color(102, 102, 102));
         remove.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -595,6 +606,11 @@ public class createUserForm extends javax.swing.JFrame {
             }
         });
         Mainpanel.add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 440, 90, 50));
+        Mainpanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, 240, 294));
+
+        pas.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        pas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Mainpanel.add(pas, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 260, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -629,22 +645,6 @@ public class createUserForm extends javax.swing.JFrame {
             userlab.setText(null);
         }
     }//GEN-LAST:event_unKeyReleased
-
-    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
-
-    }//GEN-LAST:event_passActionPerformed
-
-    private void passKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyReleased
-        String PATTERN = "^[a-zA-Z0-9]{8,30}$";
-        Pattern pt = Pattern.compile(PATTERN);
-        Matcher match = pt.matcher(pass.getText());
-        if (!match.matches()){
-            pslab.setText("Password too short...");
-        }
-        else{
-            pslab.setText(null);
-        }
-    }//GEN-LAST:event_passKeyReleased
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
@@ -749,12 +749,12 @@ public class createUserForm extends javax.swing.JFrame {
     }//GEN-LAST:event_uupdateMouseExited
 
     private void uupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uupdateActionPerformed
-          if (fname.getText().isEmpty()
-            || lname.getText().isEmpty()
-            || email.getText().isEmpty()
-            || phone.getText().isEmpty()
-            || un.getText().isEmpty()
-            || pass.getText().isEmpty()) {
+    if (fname.getText().isEmpty()
+        || lname.getText().isEmpty()
+        || email.getText().isEmpty()
+        || phone.getText().isEmpty()
+        || un.getText().isEmpty()
+        || pas.getText().isEmpty()) {
         JOptionPane.showMessageDialog(null, "All fields are required");
         return;
     } else if (updateCheck()) {
@@ -762,17 +762,30 @@ public class createUserForm extends javax.swing.JFrame {
         return;
     } else {
         dbConnect dbc = new dbConnect();
+
         dbc.updateData("UPDATE users SET u_fname = '" + fname.getText() + "', u_lname = '" + lname.getText() + "', "
                 + "u_contact = '" + phone.getText() + "', u_email = '" + email.getText() + "', u_un = '" + un.getText() + "', "
-                + "u_pass = '" + pass.getText() + "', u_type = '" + type.getSelectedItem() + "', "
-                + "status = '" + us.getSelectedItem() + "' WHERE u_id = '" + uid.getText() + "'");
-       
+                + "u_pass = '" + pas.getText() + "', u_type = '" + type.getSelectedItem() + "', "
+                + "status = '" + us.getSelectedItem() + "', u_image = '" + destination + "' WHERE u_id = '" + uid.getText() + "'");
+            
+        if(destination.isEmpty()){
+            File existingFile = new File(oldpath);
+            if(existingFile.exists())
+            {
+                existingFile.delete();
+            }
+        }else{
+            if(!(oldpath.equals(destination)))
+            {
+                imageUpdater(oldpath,destination);
+            }
+        }
         adminUsers adu = new adminUsers();
         adu.setVisible(true);
         this.dispose();
     }
-
-
+                                          
+ 
     }//GEN-LAST:event_uupdateActionPerformed
 
     private void uclearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uclearMouseEntered
@@ -810,37 +823,54 @@ public class createUserForm extends javax.swing.JFrame {
     }//GEN-LAST:event_uaddMouseExited
 
     private void uaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uaddActionPerformed
+                                   
     if (fname.getText().isEmpty() 
         || lname.getText().isEmpty() 
         || email.getText().isEmpty() 
         || phone.getText().isEmpty()
         || un.getText().isEmpty() 
-        || pass.getText().isEmpty()) {
-        
+        || pas.getText().isEmpty()) {
+
         JOptionPane.showMessageDialog(null, "All fields are required");
         return;
     } 
-    
+
     if (duplicateCheck()) {
         System.out.println("Duplicate Exist");
         return;
     } 
 
-    dbConnect dbc = new dbConnect();
-    int rowsInserted = dbc.insertData("INSERT INTO users (u_fname, u_lname, u_contact, u_email, u_un, u_pass, u_type, status)"
-            + "VALUES('" + fname.getText() + "','" + lname.getText() + "', '" + phone.getText() + "',"
-            + " '" + email.getText() + "', '" + un.getText() + "', '" + pass.getText() + "',"
-            + " '" + type.getSelectedItem() + "', '"+us.getSelectedItem()+"')");
+    String apass = "";
+    try {
+        apass = passwordHasher.hashPassword(pas.getText());
+    } catch (NoSuchAlgorithmException ex) {
+        Logger.getLogger(createUserForm.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Error hashing password");
+        return;
+    }
 
-    if (rowsInserted > 0) {  // Check if at least one row was inserted
-        JOptionPane.showMessageDialog(null, "Registered Successfully!");
-        adminUsers adus = new adminUsers();
-        adus.setVisible(true);
-        this.dispose();
+    dbConnect dbc = new dbConnect();
+    int rowsInserted = dbc.insertData("INSERT INTO users (u_fname, u_lname, u_contact, u_email, u_un, u_pass, u_type, status, sec_ques, sec_ans, u_image) "
+        + "VALUES('" + fname.getText() + "', '" + lname.getText() + "', '" + phone.getText() + "', "
+        + "'" + email.getText() + "', '" + un.getText() + "', '" + apass + "', "
+        + "'" + type.getSelectedItem() + "', '" + us.getSelectedItem() + "', '', '', '" + destination + "')");
+
+    if (rowsInserted > 0) {
+        try {
+            if (selectedFile != null) {
+                Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            }
+            JOptionPane.showMessageDialog(null, "Registered Successfully!");
+            adminUsers adus = new adminUsers();
+            adus.setVisible(true);
+            this.dispose();
+        } catch (IOException ex) {
+            System.out.println("Insert Image Error: " + ex);
+            JOptionPane.showMessageDialog(null, "Image saving failed: " + ex.getMessage());
+        }
     } else {
         JOptionPane.showMessageDialog(null, "Registration Failed!");
     }
-
 
     }//GEN-LAST:event_uaddActionPerformed
 
@@ -861,7 +891,11 @@ public class createUserForm extends javax.swing.JFrame {
     }//GEN-LAST:event_removeMouseExited
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
-        // TODO add your handling code here:
+        remove.setEnabled(false);
+        select.setEnabled(true);
+        image.setIcon(null);
+        destination = "";
+        path = "";
     }//GEN-LAST:event_removeActionPerformed
 
     private void selectMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseEntered
@@ -873,7 +907,28 @@ public class createUserForm extends javax.swing.JFrame {
     }//GEN-LAST:event_selectMouseExited
 
     private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
-        // TODO add your handling code here:
+          //         imageuploadjava.txt
+           JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            try {
+                selectedFile = fileChooser.getSelectedFile();
+                destination = "src/userimages/" + selectedFile.getName();
+                path = selectedFile.getAbsolutePath();
+
+                if (FileExistenceChecker(path) == 1) {
+                    JOptionPane.showMessageDialog(null, "File Already Exist, Rename or Choose another!");
+                    destination = "";
+                    path = "";
+                } else {
+                    image.setIcon(ResizeImage(path, null, image));
+                    select.setEnabled(false);
+                    remove.setEnabled(true);
+                }
+            } catch (Exception ex) {
+                System.out.println("File Error!");
+            }
+        }
     }//GEN-LAST:event_selectActionPerformed
 
     private void uaddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uaddMouseClicked
@@ -886,29 +941,7 @@ public class createUserForm extends javax.swing.JFrame {
     }//GEN-LAST:event_uaddMouseClicked
 
     private void selectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseClicked
-         //         imageuploadjava.txt
-        JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            try {
-                
-                selectedFile = fileChooser.getSelectedFile();
-                destination = "src/userimages/" + selectedFile.getName();
-                path = selectedFile.getAbsolutePath();
-
-                if (FileExistenceChecker(path) == 1) {
-                    JOptionPane.showMessageDialog(null, "File Already Exist, Rename or Choose another!");
-                    destination = "";
-                    path = "";
-                } else {
-//                    image.setIcon(ResizeImage(path, null, image));
-                    select.setEnabled(false);
-                    remove.setEnabled(true);
-                }
-            } catch (Exception ex) {
-                System.out.println("File Error!");
-            }
-        }
+       
     }//GEN-LAST:event_selectMouseClicked
 
     /**
@@ -949,18 +982,20 @@ public class createUserForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Header;
+    private javax.swing.JPanel JPanel;
     private javax.swing.JPanel Mainpanel;
     public javax.swing.JTextField email;
     private javax.swing.JLabel emlab;
     public javax.swing.JTextField fname;
     private javax.swing.JLabel fnlab;
-    private javax.swing.JPanel image;
+    public javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -971,7 +1006,7 @@ public class createUserForm extends javax.swing.JFrame {
     public javax.swing.JTextField lname;
     private javax.swing.JLabel lnlab;
     private javax.swing.JPanel navi1;
-    public javax.swing.JPasswordField pass;
+    public javax.swing.JPasswordField pas;
     public javax.swing.JTextField phone;
     private javax.swing.JLabel phonelab;
     private javax.swing.JLabel pslab;

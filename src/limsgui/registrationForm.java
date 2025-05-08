@@ -364,10 +364,10 @@ public class registrationForm extends javax.swing.JFrame {
         try{
             String pass = passwordHasher.hashPassword(passs.getText());
       
-        if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_contact, u_email, u_un, u_pass, u_type, status)"
+        if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_contact, u_email, u_un, u_pass, u_type, sec_ques, sec_ans,u_image, status )"
                 + "VALUES('" + fname.getText() + "','" + lname.getText() + "', '" + phone.getText() + "',"
                 + " '" + email.getText() + "', '" + un.getText() + "', '" + pass + "',"
-                + " '" + type.getSelectedItem() + "', 'Pending')") == 0) {
+                + " '" + type.getSelectedItem() + "','', '', '', 'Pending')") == 0) {
        
 
         } else {
