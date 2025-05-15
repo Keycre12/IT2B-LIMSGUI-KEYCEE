@@ -76,9 +76,7 @@ public class adminUsers extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         users_tbl = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        delete = new javax.swing.JButton();
-        add = new javax.swing.JButton();
-        update = new javax.swing.JButton();
+        print = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -220,37 +218,15 @@ public class adminUsers extends javax.swing.JFrame {
         Mainpanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 202, 700, 430));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logosmallerver.png"))); // NOI18N
-        Mainpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 120, 110));
+        Mainpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 120, 110));
 
-        delete.setBackground(new java.awt.Color(102, 102, 102));
-        delete.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        delete.setText("DELETE");
-        delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
+        print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/printt.png"))); // NOI18N
+        print.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                printMouseClicked(evt);
             }
         });
-        Mainpanel.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 130, 100, 40));
-
-        add.setBackground(new java.awt.Color(102, 102, 102));
-        add.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        add.setText("ADD");
-        add.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addActionPerformed(evt);
-            }
-        });
-        Mainpanel.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 100, 40));
-
-        update.setBackground(new java.awt.Color(102, 102, 102));
-        update.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        update.setText("EDIT");
-        update.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateActionPerformed(evt);
-            }
-        });
-        Mainpanel.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 100, 40));
+        Mainpanel.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 100, 80, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -276,19 +252,6 @@ public class adminUsers extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        
-
-    }//GEN-LAST:event_deleteActionPerformed
-
-    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        
-    }//GEN-LAST:event_addActionPerformed
-
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        
-    }//GEN-LAST:event_updateActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Session ses = Session.getInstance();
@@ -474,6 +437,37 @@ public class adminUsers extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_p_deleteMouseClicked
 
+    private void printMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printMouseClicked
+        int rowIndex = users_tbl.getSelectedRow();
+
+    if (rowIndex < 0) {
+        JOptionPane.showMessageDialog(null, "Please Select an Item");
+    } else {
+        try {
+            dbConnect dbc = new dbConnect();
+            TableModel tbl = users_tbl.getModel();
+            ResultSet rs = dbc.getData("SELECT * FROM users WHERE u_id = '" + tbl.getValueAt(rowIndex, 0) + "'");
+            if (rs.next()) {
+                individualPrinting ipt = new individualPrinting();
+                ipt.uid.setText(""+rs.getInt("u_id"));
+                ipt.fn.setText("" + rs.getString("u_fname"));
+                ipt.ln.setText("" + rs.getString("u_lname"));
+                ipt.phone.setText("" + rs.getString("u_contact"));
+                ipt.email.setText("" + rs.getString("u_email"));
+                ipt.un.setText("" + rs.getString("u_un"));
+                ipt.at.setText(""+rs.getString("u_type")); 
+                ipt.st.setText(""+rs.getString("status")); 
+                ipt.image.setIcon(ipt.ResizeImage(rs.getString("u_image"), null, ipt.image));
+                ipt.setVisible(true);
+                this.dispose();
+            }
+        } catch (SQLException ex) {
+            System.out.println("" + ex);
+        }
+    }
+    
+    }//GEN-LAST:event_printMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -513,8 +507,6 @@ public class adminUsers extends javax.swing.JFrame {
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Mainpanel;
     private javax.swing.JLabel accid;
-    private javax.swing.JButton add;
-    private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -530,7 +522,7 @@ public class adminUsers extends javax.swing.JFrame {
     private javax.swing.JPanel p_add;
     private javax.swing.JPanel p_delete;
     private javax.swing.JPanel p_edit;
-    private javax.swing.JButton update;
+    private javax.swing.JLabel print;
     private javax.swing.JTable users_tbl;
     // End of variables declaration//GEN-END:variables
 }
