@@ -181,6 +181,7 @@ public class createBookForm extends javax.swing.JFrame {
 
         Header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -229,7 +230,15 @@ public class createBookForm extends javax.swing.JFrame {
         jLabel1.setText("ADD BOOK");
         Header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 840, 80));
 
-        getContentPane().add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 1010, -1));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        Header.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, 90, 70));
+
+        getContentPane().add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 1010, 90));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setText("Book ID:");
@@ -323,7 +332,7 @@ public class createBookForm extends javax.swing.JFrame {
                 lefKeyReleased(evt);
             }
         });
-        getContentPane().add(lef, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 640, 260, 40));
+        getContentPane().add(lef, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 640, 110, 40));
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setText("Total Damage:");
@@ -455,7 +464,7 @@ public class createBookForm extends javax.swing.JFrame {
         });
         navi1.add(badd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 230, 50));
 
-        getContentPane().add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 570));
+        getContentPane().add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 310, 600));
 
         uid.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         uid.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -590,7 +599,7 @@ public class createBookForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 640, 100, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 640, 100, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -996,6 +1005,12 @@ public class createBookForm extends javax.swing.JFrame {
     
     }//GEN-LAST:event_beditMouseClicked
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        dispBooks db = new dispBooks();
+        db.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1056,6 +1071,7 @@ public class createBookForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

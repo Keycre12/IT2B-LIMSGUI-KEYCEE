@@ -14,8 +14,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.MessageFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -247,9 +249,9 @@ public class dispBooks extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-//        adminDashboard adb = new adminDashboard();
-//        adb.setVisible(true);
-//        this.dispose();
+        UserDashboard adb = new UserDashboard();
+        adb.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void p_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_addMouseClicked
@@ -462,6 +464,17 @@ public class dispBooks extends javax.swing.JFrame {
 //                System.out.println("" + ex);
 //            }
 //        }
+
+            
+        MessageFormat header = new MessageFormat(
+        "Matrix Library Inventory Reports     " + java.time.LocalDate.now());
+        MessageFormat footer = new MessageFormat("Page {0, number, integer}");
+
+        try {
+            books_tbl.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
 
     }//GEN-LAST:event_printMouseClicked
 
