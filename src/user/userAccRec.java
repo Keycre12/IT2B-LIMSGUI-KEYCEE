@@ -99,6 +99,7 @@ public class userAccRec extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         Header.setBackground(new java.awt.Color(255, 204, 102));
         Header.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -232,7 +233,7 @@ public class userAccRec extends javax.swing.JFrame {
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, -1, 30));
 
         sec.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        sec.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your nickname?", "What is your first pet name?", "What is your middle initial?" }));
+        sec.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your nickname?", "What is your first pet name?", "What is your middle initial?", "What is the name of your mother?", "What city you were born?" }));
         jPanel2.add(sec, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 350, 30));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lockk.png"))); // NOI18N

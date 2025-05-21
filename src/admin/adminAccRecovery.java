@@ -189,7 +189,7 @@ public class adminAccRecovery extends javax.swing.JFrame {
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, -1, 30));
 
         secq.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        secq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your nickname?", "What is your first pet name?", "What is your middle initial?" }));
+        secq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your nickname?", "What is your first pet name?", "What is your middle initial?", "What is the name of your mother?", "What city you were born?" }));
         jPanel1.add(secq, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 350, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lockk.png"))); // NOI18N

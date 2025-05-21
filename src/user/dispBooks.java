@@ -41,7 +41,7 @@ public class dispBooks extends javax.swing.JFrame {
         try{
             dbConnect dbc = new dbConnect();
             ResultSet rs = dbc.getData("SELECT b_id AS 'ID', b_title AS 'Book Title', b_category AS 'Category', " +
-             "b_author AS 'Author', publisher AS 'Publisher', quantity AS 'Quantity', borrowed AS 'Borrowed', damaged AS 'Damaged', available AS 'Available' FROM books");
+             "b_author AS 'Author', publisher AS 'Publisher', quantity AS 'Quantity', borrowed AS 'Borrowed', damaged AS 'Damaged', lost AS 'Lost', available AS 'Available' FROM books");
             books_tbl.setModel(DbUtils.resultSetToTableModel(rs));
              rs.close();
         }catch(SQLException ex){
@@ -76,6 +76,7 @@ public class dispBooks extends javax.swing.JFrame {
         print = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         Header.setBackground(new java.awt.Color(255, 204, 102));
         Header.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -136,7 +137,7 @@ public class dispBooks extends javax.swing.JFrame {
         p_add.add(jLabel6);
         jLabel6.setBounds(50, 10, 130, 30);
 
-        navi.add(p_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 230, 50));
+        navi.add(p_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 230, 50));
 
         p_edit.setBackground(new java.awt.Color(102, 102, 102));
         p_edit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -159,7 +160,7 @@ public class dispBooks extends javax.swing.JFrame {
         p_edit.add(jLabel9);
         jLabel9.setBounds(60, 10, 110, 30);
 
-        navi.add(p_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 230, 50));
+        navi.add(p_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 230, 50));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel10.setText("USERS");
@@ -186,9 +187,10 @@ public class dispBooks extends javax.swing.JFrame {
         p_delete.add(jLabel12);
         jLabel12.setBounds(60, 10, 110, 30);
 
-        navi.add(p_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 230, 50));
+        navi.add(p_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 230, 50));
 
-        books_tbl.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        books_tbl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        books_tbl.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         books_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -213,16 +215,21 @@ public class dispBooks extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(navi, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(navi, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(500, 500, 500)
-                        .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(513, 513, 513)
+                        .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,15 +239,16 @@ public class dispBooks extends javax.swing.JFrame {
                         .addGap(76, 76, 76)
                         .addComponent(navi, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
+                                .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
                                 .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(2, 2, 2)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 2, Short.MAX_VALUE))
         );
 
@@ -301,6 +309,7 @@ public class dispBooks extends javax.swing.JFrame {
             bk.qty.setText(rs.getString("quantity"));
             bk.bor.setText(rs.getString("borrowed"));
             bk.dam.setText(rs.getString("damaged"));
+            bk.los.setText(rs.getString("lost"));
             bk.lef.setText(rs.getString("available"));
 
             String imagePath = rs.getString("b_image");
@@ -405,7 +414,7 @@ public class dispBooks extends javax.swing.JFrame {
                 pstmt = con.prepareStatement(sql);
 
                 pstmt.executeUpdate();
-                System.out.println("Login Log recorded successfully.");
+                System.out.println("Log recorded successfully.");
             } catch (SQLException e)
             {
                 JOptionPane.showMessageDialog(null, "Error recording log: " + e.getMessage());

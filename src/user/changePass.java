@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package user;
 
 import config.Session;
@@ -74,7 +70,6 @@ public class changePass extends javax.swing.JFrame {
     private void initComponents() {
 
         Header = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         navi = new javax.swing.JPanel();
@@ -84,9 +79,7 @@ public class changePass extends javax.swing.JFrame {
         lname = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        conpas = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        newpas = new javax.swing.JTextField();
         npslab = new javax.swing.JLabel();
         oldpas = new javax.swing.JTextField();
         oldlab = new javax.swing.JLabel();
@@ -97,23 +90,19 @@ public class changePass extends javax.swing.JFrame {
         saved = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         cpslab = new javax.swing.JLabel();
+        cpas = new javax.swing.JCheckBox();
+        conpas = new javax.swing.JPasswordField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        newpas = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Header.setBackground(new java.awt.Color(255, 204, 102));
         Header.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         Header.setForeground(new java.awt.Color(255, 204, 102));
         Header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel3.setText("LOGOUT");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-        Header.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -171,37 +160,9 @@ public class changePass extends javax.swing.JFrame {
 
         getContentPane().add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 570));
 
-        conpas.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        conpas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        conpas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                conpasActionPerformed(evt);
-            }
-        });
-        conpas.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                conpasKeyReleased(evt);
-            }
-        });
-        getContentPane().add(conpas, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 260, 40));
-
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("Confirm Pass:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 260, 30));
-
-        newpas.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        newpas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        newpas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newpasActionPerformed(evt);
-            }
-        });
-        newpas.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                newpasKeyReleased(evt);
-            }
-        });
-        getContentPane().add(newpas, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 260, 40));
 
         npslab.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         npslab.setForeground(new java.awt.Color(204, 0, 0));
@@ -288,50 +249,44 @@ public class changePass extends javax.swing.JFrame {
         cpslab.setText(" ");
         getContentPane().add(cpslab, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 260, -1));
 
+        cpas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cpas, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, -1, 40));
+
+        conpas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        conpas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                conpasKeyReleased(evt);
+            }
+        });
+        getContentPane().add(conpas, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 260, 40));
+
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 230, -1, 40));
+
+        newpas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        newpas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newpasActionPerformed(evt);
+            }
+        });
+        newpas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                newpasKeyReleased(evt);
+            }
+        });
+        getContentPane().add(newpas, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 260, 40));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        loginForm lgn = new loginForm();
-        JOptionPane.showMessageDialog(null,"Logged-out!");
-        this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
-
-    private void conpasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conpasActionPerformed
-
-    }//GEN-LAST:event_conpasActionPerformed
-
-    private void conpasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_conpasKeyReleased
-        String PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d!@#$%^&*()_+\\-=]{8,30}$";
-        Pattern pt = Pattern.compile(PATTERN);
-        String password = conpas.getText().trim(); // Trim to remove spaces
-        Matcher match = pt.matcher(password);
-if (!match.matches()) {
-            cpslab.setText("Password too short, at least be 8 characters long");
-        }
-        else{
-            cpslab.setText(null);
-        }
-    }//GEN-LAST:event_conpasKeyReleased
-
-    private void newpasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newpasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newpasActionPerformed
-
-    private void newpasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newpasKeyReleased
-     String PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d!@#$%^&*()_+\\-=]{8,30}$";
-        Pattern pt = Pattern.compile(PATTERN);
-        String password = newpas.getText().trim(); // Trim to remove spaces
-        Matcher match = pt.matcher(password);
-
-        if (!match.matches()) {
-            npslab.setText("Password must be 8-30 characters long");
-        } else {
-            npslab.setText(null);
-        }
-
-    }//GEN-LAST:event_newpasKeyReleased
 
     private void oldpasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldpasActionPerformed
         // TODO add your handling code here:
@@ -425,6 +380,53 @@ if (!match.matches()) {
             this.dispose();
     }//GEN-LAST:event_backMouseClicked
 
+    private void cpasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpasActionPerformed
+            if (conpas.getEchoChar() == '*') {
+                conpas.setEchoChar((char) 0); // Show password
+            } else {
+                conpas.setEchoChar('*'); // Hide password
+            }
+    }//GEN-LAST:event_cpasActionPerformed
+
+    private void conpasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_conpasKeyReleased
+        String PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d!@#$%^&*()_+\\-=]{8,30}$";
+        Pattern pt = Pattern.compile(PATTERN);
+        String password = conpas.getText().trim(); // Trim to remove spaces
+        Matcher match = pt.matcher(password);
+        if (!match.matches()) {
+                    cpslab.setText("Password too short, at least be 8 characters long");
+                }
+                else{
+                    cpslab.setText(null);
+                }
+    }//GEN-LAST:event_conpasKeyReleased
+
+    private void newpasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newpasKeyReleased
+        String PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d!@#$%^&*()_+\\-=]{8,30}$";
+        Pattern pt = Pattern.compile(PATTERN);
+        String password = newpas.getText().trim(); // Trim to remove spaces
+        Matcher match = pt.matcher(password);
+
+        if (!match.matches()) {
+            npslab.setText("Password must be 8-30 characters long");
+        } else {
+            npslab.setText(null);
+        }
+
+    }//GEN-LAST:event_newpasKeyReleased
+
+    private void newpasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newpasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newpasActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if (newpas.getEchoChar() == '*') {
+                newpas.setEchoChar((char) 0); // Show password
+            } else {
+                newpas.setEchoChar('*'); // Hide password
+            }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -463,15 +465,16 @@ if (!match.matches()) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Header;
     private javax.swing.JPanel back;
-    private javax.swing.JTextField conpas;
+    private javax.swing.JPasswordField conpas;
+    private javax.swing.JCheckBox cpas;
     private javax.swing.JLabel cpslab;
     private javax.swing.JLabel fname;
     private javax.swing.JLabel iddisp;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
@@ -480,7 +483,7 @@ if (!match.matches()) {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lname;
     private javax.swing.JPanel navi;
-    private javax.swing.JTextField newpas;
+    private javax.swing.JPasswordField newpas;
     private javax.swing.JLabel npslab;
     private javax.swing.JLabel oldlab;
     private javax.swing.JTextField oldpas;

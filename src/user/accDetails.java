@@ -98,7 +98,6 @@ public class accDetails extends javax.swing.JFrame {
         email = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         iddisp = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -135,7 +134,7 @@ public class accDetails extends javax.swing.JFrame {
         acc_lname.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         acc_lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acc_lname.setText("USER");
-        navi.add(acc_lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 190, 40));
+        navi.add(acc_lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 190, 40));
 
         p_add.setBackground(new java.awt.Color(102, 102, 102));
         p_add.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -162,7 +161,7 @@ public class accDetails extends javax.swing.JFrame {
         acc_fname.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         acc_fname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acc_fname.setText("USER");
-        navi.add(acc_fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 190, 40));
+        navi.add(acc_fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 40));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
 
@@ -304,24 +303,9 @@ public class accDetails extends javax.swing.JFrame {
         iddisp.setText("UID:");
         getContentPane().add(iddisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 330, 40));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel3.setText("LOGOUT");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 590, -1, -1));
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        loginForm lgn = new loginForm();
-        JOptionPane.showMessageDialog(null,"Logged-out!");
-        this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
 
     private void p_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_addMouseClicked
         changePass cp = new changePass();
@@ -496,7 +480,6 @@ public class accDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

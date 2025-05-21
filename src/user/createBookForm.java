@@ -18,6 +18,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -182,7 +184,6 @@ public class createBookForm extends javax.swing.JFrame {
         Header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -195,20 +196,18 @@ public class createBookForm extends javax.swing.JFrame {
         lef = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         navi1 = new javax.swing.JPanel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
         bdel = new javax.swing.JButton();
         bref = new javax.swing.JButton();
         bedit = new javax.swing.JButton();
         bclear = new javax.swing.JButton();
         bcan = new javax.swing.JButton();
         badd = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         uid = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         JPanel = new javax.swing.JPanel();
         image = new javax.swing.JLabel();
         remove = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         select = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         isbn = new javax.swing.JTextField();
@@ -216,6 +215,10 @@ public class createBookForm extends javax.swing.JFrame {
         bor = new javax.swing.JTextField();
         dam = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        los = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        isbnlab = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -240,29 +243,25 @@ public class createBookForm extends javax.swing.JFrame {
 
         getContentPane().add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 1010, 90));
 
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel10.setText("Book ID:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 90, 40));
-
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("Author:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, 30));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, 30));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel11.setText("Category:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 75, 40));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 75, 40));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setText("Publisher:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, 83, 40));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 83, 40));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Total Qty:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 90, 40));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, 90, 40));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel12.setText("Total Borrowed:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 520, 83, 40));
+        jLabel12.setText("Total Lost:");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, 90, 40));
 
         title.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         title.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -276,7 +275,7 @@ public class createBookForm extends javax.swing.JFrame {
                 titleKeyReleased(evt);
             }
         });
-        getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 260, 40));
+        getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 260, 40));
 
         author.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         author.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -290,7 +289,7 @@ public class createBookForm extends javax.swing.JFrame {
                 authorKeyReleased(evt);
             }
         });
-        getContentPane().add(author, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, 260, 40));
+        getContentPane().add(author, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 260, 40));
 
         cat.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         cat.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -304,7 +303,7 @@ public class createBookForm extends javax.swing.JFrame {
                 catKeyReleased(evt);
             }
         });
-        getContentPane().add(cat, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 260, 40));
+        getContentPane().add(cat, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 260, 40));
 
         pub.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         pub.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -318,7 +317,7 @@ public class createBookForm extends javax.swing.JFrame {
                 pubKeyReleased(evt);
             }
         });
-        getContentPane().add(pub, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 260, 40));
+        getContentPane().add(pub, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, 260, 40));
 
         lef.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lef.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -332,22 +331,15 @@ public class createBookForm extends javax.swing.JFrame {
                 lefKeyReleased(evt);
             }
         });
-        getContentPane().add(lef, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 640, 110, 40));
+        getContentPane().add(lef, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 640, 110, 40));
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setText("Total Damage:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 580, 83, 40));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 580, 150, 40));
 
         navi1.setBackground(new java.awt.Color(102, 102, 102));
         navi1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         navi1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        navi1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 230, 12));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sluser.png"))); // NOI18N
-        navi1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 120, 110));
 
         bdel.setBackground(new java.awt.Color(102, 102, 102));
         bdel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -365,7 +357,7 @@ public class createBookForm extends javax.swing.JFrame {
                 bdelActionPerformed(evt);
             }
         });
-        navi1.add(bdel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 230, 50));
+        navi1.add(bdel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 170, 50));
 
         bref.setBackground(new java.awt.Color(102, 102, 102));
         bref.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -383,7 +375,7 @@ public class createBookForm extends javax.swing.JFrame {
                 brefActionPerformed(evt);
             }
         });
-        navi1.add(bref, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 230, 50));
+        navi1.add(bref, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 170, 50));
 
         bedit.setBackground(new java.awt.Color(102, 102, 102));
         bedit.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -405,7 +397,7 @@ public class createBookForm extends javax.swing.JFrame {
                 beditActionPerformed(evt);
             }
         });
-        navi1.add(bedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 230, 50));
+        navi1.add(bedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 170, 50));
 
         bclear.setBackground(new java.awt.Color(102, 102, 102));
         bclear.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -423,7 +415,7 @@ public class createBookForm extends javax.swing.JFrame {
                 bclearActionPerformed(evt);
             }
         });
-        navi1.add(bclear, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 230, 50));
+        navi1.add(bclear, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 170, 50));
 
         bcan.setBackground(new java.awt.Color(102, 102, 102));
         bcan.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -441,7 +433,7 @@ public class createBookForm extends javax.swing.JFrame {
                 bcanActionPerformed(evt);
             }
         });
-        navi1.add(bcan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 230, 50));
+        navi1.add(bcan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 170, 50));
 
         badd.setBackground(new java.awt.Color(102, 102, 102));
         badd.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -462,9 +454,13 @@ public class createBookForm extends javax.swing.JFrame {
                 baddActionPerformed(evt);
             }
         });
-        navi1.add(badd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 230, 50));
+        navi1.add(badd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 170, 50));
 
-        getContentPane().add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 310, 600));
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel10.setText("USER ID:");
+        navi1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, 90, 40));
+
+        getContentPane().add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 210, 600));
 
         uid.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         uid.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -479,11 +475,11 @@ public class createBookForm extends javax.swing.JFrame {
                 uidKeyReleased(evt);
             }
         });
-        getContentPane().add(uid, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 260, 40));
+        getContentPane().add(uid, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 260, 40));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel14.setText("Book Title:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 90, 50));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 90, 50));
 
         JPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(8, 8, 8, 8, new java.awt.Color(0, 0, 0)));
         JPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -509,9 +505,6 @@ public class createBookForm extends javax.swing.JFrame {
         });
         getContentPane().add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 440, 90, 50));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logosmallerver.png"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 510, 120, 110));
-
         select.setBackground(new java.awt.Color(102, 102, 102));
         select.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         select.setText("SELECT");
@@ -535,7 +528,7 @@ public class createBookForm extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel15.setText("Book ISBN:");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 90, 50));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 90, 50));
 
         isbn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         isbn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -549,7 +542,7 @@ public class createBookForm extends javax.swing.JFrame {
                 isbnKeyReleased(evt);
             }
         });
-        getContentPane().add(isbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 260, 40));
+        getContentPane().add(isbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 260, 40));
 
         qty.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         qty.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -563,7 +556,7 @@ public class createBookForm extends javax.swing.JFrame {
                 qtyKeyReleased(evt);
             }
         });
-        getContentPane().add(qty, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 260, 40));
+        getContentPane().add(qty, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 260, 40));
 
         bor.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         bor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -577,7 +570,7 @@ public class createBookForm extends javax.swing.JFrame {
                 borKeyReleased(evt);
             }
         });
-        getContentPane().add(bor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, 260, 40));
+        getContentPane().add(bor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 520, 130, 40));
 
         dam.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         dam.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -591,7 +584,7 @@ public class createBookForm extends javax.swing.JFrame {
                 damKeyReleased(evt);
             }
         });
-        getContentPane().add(dam, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 580, 260, 40));
+        getContentPane().add(dam, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 580, 130, 40));
 
         jButton1.setText("Books Left:");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -599,7 +592,32 @@ public class createBookForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 640, 100, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 640, 100, 40));
+
+        los.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        los.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        los.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                losActionPerformed(evt);
+            }
+        });
+        los.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                losKeyReleased(evt);
+            }
+        });
+        getContentPane().add(los, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 520, 130, 40));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel16.setText("Total Borrowed:");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 520, 170, 40));
+
+        isbnlab.setForeground(new java.awt.Color(204, 0, 51));
+        getContentPane().add(isbnlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 260, 20));
+
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel17.setText("Book ID:");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 90, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -757,6 +775,7 @@ public class createBookForm extends javax.swing.JFrame {
             int quant = Integer.parseInt(qty.getText());
             int borrowed = Integer.parseInt(bor.getText());
             int damaged = Integer.parseInt(dam.getText());
+            int lost = Integer.parseInt(los.getText());
 
             if (borrowed + damaged > quant) {
                 JOptionPane.showMessageDialog(null, "Borrowed and Damaged books cannot exceed Total Quantity.");
@@ -768,10 +787,10 @@ public class createBookForm extends javax.swing.JFrame {
 
             dbConnect dbc = new dbConnect();
 
-            int rowsInserted = dbc.insertData("INSERT INTO books (b_isbn, b_title, b_category, b_author, publisher, quantity, borrowed, damaged, available, b_image) "
+            int rowsInserted = dbc.insertData("INSERT INTO books (b_isbn, b_title, b_category, b_author, publisher, quantity, borrowed, damaged, lost, available, b_image) "
                     + "VALUES('" + isbn.getText() + "', '" + title.getText() + "', '" + cat.getText() + "', "
                     + "'" + author.getText() + "', '" + pub.getText() + "', " + quant + ", "
-                    + borrowed + ", " + damaged + ", " + left + ", '" + destination + "')");
+                    + borrowed + ", " + damaged + ", " + lost + ",  " + left + ", '" + destination + "')");
 
             if (rowsInserted > 0) {
                 try {
@@ -861,7 +880,15 @@ public class createBookForm extends javax.swing.JFrame {
     }//GEN-LAST:event_isbnActionPerformed
 
     private void isbnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_isbnKeyReleased
-        // TODO add your handling code here:
+        String PATTERN = "[0-9Xx]{10}$";
+        Pattern pt = Pattern.compile(PATTERN);
+        Matcher match = pt.matcher(isbn.getText());
+
+        if (!match.matches()) {
+            isbnlab.setText("Invalid ISBN. It must be exactly 10 characters");
+        } else {
+            isbnlab.setText(null);
+        }
     }//GEN-LAST:event_isbnKeyReleased
 
     private void qtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qtyActionPerformed
@@ -892,6 +919,7 @@ public class createBookForm extends javax.swing.JFrame {
         String qtyText = qty.getText();
         String borText = bor.getText();
         String damagedText = dam.getText();
+        String lostText = los.getText();
 
         if (!qtyText.matches("\\d+") || !borText.matches("\\d+") || !damagedText.matches("\\d+")) {
             JOptionPane.showMessageDialog(null, "Please enter valid positive whole numbers for Quantity, Borrowed, and Damaged.");
@@ -901,13 +929,14 @@ public class createBookForm extends javax.swing.JFrame {
         int qtyVal = Integer.parseInt(qtyText);
         int borrowed = Integer.parseInt(borText);
         int damaged = Integer.parseInt(damagedText);
+        int lost = Integer.parseInt(lostText);
 
         if (borrowed + damaged > qtyVal) {
             JOptionPane.showMessageDialog(null, "Borrowed + Damaged cannot exceed Total Quantity.");
             return;
         }
 
-        int left = qtyVal - borrowed - damaged;
+        int left = qtyVal - borrowed - damaged - lost;
         lef.setText(String.valueOf(left));
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -967,7 +996,7 @@ public class createBookForm extends javax.swing.JFrame {
 //    }
 //}
 
-    if (isbn.getText().isEmpty()
+ if (isbn.getText().isEmpty()
         || title.getText().isEmpty()
         || cat.getText().isEmpty()
         || author.getText().isEmpty()
@@ -983,25 +1012,25 @@ public class createBookForm extends javax.swing.JFrame {
 
     dbc.updateData("UPDATE books SET b_isbn = '" + isbn.getText() + "', b_title = '" + title.getText() + "', "
             + "b_category = '" + cat.getText() + "', b_author = '" + author.getText() + "', publisher = '" + pub.getText() + "', "
-            + "quantity = '" + qty.getText() + "', borrowed = '" + bor.getText() + "', damaged = '" + dam.getText() + "',"
-            + "available = '" + lef.getText() + "',  b_image = '" + destination + "' WHERE b_id = '" + uid.getText() + "'");
-        
-    if(destination.isEmpty()){
+            + "quantity = '" + qty.getText() + "', borrowed = '" + bor.getText() + "', damaged = '" + dam.getText() + "', lost = '" + los.getText() + "', "
+            + "available = '" + lef.getText() + "', b_image = '" + destination + "' WHERE b_id = '" + uid.getText() + "'");
+
+    if (destination == null || destination.isEmpty()) {
         File existingFile = new File(oldpath);
-        if(existingFile.exists()) {
+        if (existingFile.exists()) {
             existingFile.delete();
         }
     } else {
-        if(!(oldpath.equals(destination))) {
-            imageUpdater(oldpath,destination);
+        if (!oldpath.equals(destination)) {
+            imageUpdater(oldpath, destination);
         }
     }
-    
+
     dispBooks db = new dispBooks();
     db.setVisible(true);
     this.dispose();
 }
-    
+
     
     }//GEN-LAST:event_beditMouseClicked
 
@@ -1010,6 +1039,14 @@ public class createBookForm extends javax.swing.JFrame {
         db.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void losActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_losActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_losActionPerformed
+
+    private void losKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_losKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_losKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1061,6 +1098,7 @@ public class createBookForm extends javax.swing.JFrame {
     public javax.swing.JTextField dam;
     public javax.swing.JLabel image;
     public javax.swing.JTextField isbn;
+    private javax.swing.JLabel isbnlab;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1069,14 +1107,14 @@ public class createBookForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator2;
     public javax.swing.JTextField lef;
+    public javax.swing.JTextField los;
     private javax.swing.JPanel navi1;
     public javax.swing.JTextField pub;
     public javax.swing.JTextField qty;

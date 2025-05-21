@@ -26,19 +26,26 @@ public class adminLogs extends javax.swing.JFrame {
         displayData();
     }
     
-     public void displayData(){
-        try{
+     public void displayData() {
+        try {
             dbConnect dbc = new dbConnect();
-            ResultSet rs = dbc.getData("SELECT * FROM logs");
+            ResultSet rs = dbc.getData(
+                "SELECT " +
+                "    l.log_id AS 'ID', " +
+                "    u.u_id AS 'User ID', " + 
+                "    u.u_un AS 'Username', " + 
+                "    l.log_action AS 'Log Action', " +
+                "    l.log_time AS 'Log Time' " +
+                "FROM logs l " + 
+                "JOIN users u ON l.u_id = u.u_id" 
+            );
             actions.setModel(DbUtils.resultSetToTableModel(rs));
-             rs.close();
-        }catch(SQLException ex){
-            System.out.println("Errors: "+ex.getMessage());
-
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("Errors: " + ex.getMessage());
+            
         }
-
-    }
-    
+}
     public void NotShowDeletedUsers() {
         // Create a list to store filtered row data
         List<Object[]> rowData = new ArrayList<>();
@@ -55,7 +62,7 @@ public class adminLogs extends javax.swing.JFrame {
                 String fname = rs.getString("u_fname");
                 String lname = rs.getString("u_lname");
                 String un = rs.getString("u_username");
-//                String npass = rs.getString("u_pass");  // Note: This might not be used, but it can be checked if necessary
+//                String npass = rs.getString("u_pass");  
                 String contact = rs.getString("u_phone");
                 String type = rs.getString("u_type");
                 String status = rs.getString("u_status");
@@ -207,8 +214,6 @@ public class adminLogs extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         navi1 = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
         accid = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -226,7 +231,7 @@ public class adminLogs extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(actions);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 730, 490));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 830, 530));
 
         Header.setBackground(new java.awt.Color(255, 204, 102));
         Header.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -252,27 +257,20 @@ public class adminLogs extends javax.swing.JFrame {
         navi1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         navi1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        navi1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 230, 12));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userb.png"))); // NOI18N
-        navi1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 110, 110));
-
-        accid.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        accid.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         accid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         accid.setText("ID");
-        navi1.add(accid, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 90, 30));
+        navi1.add(accid, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 90, 30));
 
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("CURRENT USER:");
-        navi1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 210, 30));
+        navi1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 120, 30));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel10.setText("USERS");
-        navi1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 90, 30));
+        navi1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 90, 30));
 
-        getContentPane().add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 230, 570));
+        getContentPane().add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 180, 570));
 
         pack();
         setLocationRelativeTo(null);
@@ -325,11 +323,9 @@ public class adminLogs extends javax.swing.JFrame {
     private javax.swing.JTable actions;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel navi1;
     // End of variables declaration//GEN-END:variables
 }
