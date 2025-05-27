@@ -63,16 +63,16 @@ public class adminUsers extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         navi = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
         accid = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         p_add = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         p_edit = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        f_name = new javax.swing.JLabel();
         p_delete = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        l_name = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         users_tbl = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
@@ -116,9 +116,6 @@ public class adminUsers extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         navi.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 230, 12));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userb.png"))); // NOI18N
-        navi.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 110));
 
         accid.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         accid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -175,9 +172,9 @@ public class adminUsers extends javax.swing.JFrame {
 
         navi.add(p_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 230, 50));
 
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel10.setText("USERS");
-        navi.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 90, 30));
+        f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        f_name.setText("USERS");
+        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 90, 30));
 
         p_delete.setBackground(new java.awt.Color(102, 102, 102));
         p_delete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -201,6 +198,10 @@ public class adminUsers extends javax.swing.JFrame {
         jLabel12.setBounds(60, 10, 110, 30);
 
         navi.add(p_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 230, 50));
+
+        l_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        l_name.setText("USERS");
+        navi.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 90, 30));
 
         Mainpanel.add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 280, 570));
 
@@ -256,6 +257,8 @@ public class adminUsers extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Session ses = Session.getInstance();
         accid.setText(""+ses.getUid());
+         f_name.setText(""+ses.getFname());
+        l_name.setText(""+ses.getLname());
         
         
 
@@ -507,10 +510,9 @@ public class adminUsers extends javax.swing.JFrame {
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Mainpanel;
     private javax.swing.JLabel accid;
+    private javax.swing.JLabel f_name;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -518,6 +520,7 @@ public class adminUsers extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel l_name;
     private javax.swing.JPanel navi;
     private javax.swing.JPanel p_add;
     private javax.swing.JPanel p_delete;

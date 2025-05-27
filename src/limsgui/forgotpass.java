@@ -414,74 +414,148 @@ public class forgotpass extends javax.swing.JFrame {
     }//GEN-LAST:event_searchMouseExited
 
     private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
-      dbConnect connector = new dbConnect();
-        String username = usern.getText();  
-        String answer = null;
-        
-    if (username.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter your username.");
+//      dbConnect connector = new dbConnect();
+//        String username = usern.getText();  
+//        String answer = null;
+//        
+//    if (username.isEmpty()) {
+//        JOptionPane.showMessageDialog(this, "Please enter your username.");
+//        return;
+//    }
+//
+//    // Create a database connection
+//    dbConnect db = new dbConnect();  // Instantiate dbConnector
+//    Connection con = db.getConnection(); // Get connection
+//        try {
+//            String query = "SELECT * FROM users WHERE u_un = '" + username + "'";
+//            PreparedStatement pstmt = connector.getConnection().prepareStatement(query);
+//
+//            ResultSet resultSet = pstmt.executeQuery();
+//
+//            if (resultSet.next()) {
+//                answer = resultSet.getString("sec_ans");
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println("SQL Exception: " + ex);
+//        }
+//
+//    if (con == null) {
+//        JOptionPane.showMessageDialog(this, "Database connection failed. Please try again later.");
+//        return;
+//    }else if(answer.equals(""))
+//    {
+//        JOptionPane.showMessageDialog(this, "You did not set a password recovery for your account.");
+//        loginForm l = new loginForm();
+//        l.setVisible(true);
+//        this.dispose();
+//    }else
+//    {
+//
+//        try {
+//            PreparedStatement stmt = con.prepareStatement(
+//                "SELECT sec_ques, sec_ans FROM users WHERE u_un = ?"
+//            );
+//            stmt.setString(1, username);
+//            ResultSet rs = stmt.executeQuery();
+//
+//            if (rs.next()) {
+//                secq.removeAllItems();
+//                secq.addItem(rs.getString("sec_ques"));
+//                secq.setEnabled(true);
+//                correctAnswer = rs.getString("sec_ans");
+//                confirm.setEnabled(true);
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Username not found.");
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            JOptionPane.showMessageDialog(this, "An error occurred while fetching the security question.");
+//        } finally {
+//            try {
+//                if (con != null) {
+//                    con.close(); // Close the connection after use
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }       
+
+dbConnect connector = new dbConnect();
+String username = usern.getText();  
+String answer = null;
+
+if (username.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Please enter your username.");
+    return;
+}
+
+// Create a database connection
+dbConnect db = new dbConnect();  // Instantiate dbConnector
+Connection con = db.getConnection(); // Get connection
+
+if (con == null) {
+    JOptionPane.showMessageDialog(this, "Database connection failed. Please try again later.");
+    return;
+}
+
+try {
+    // Check if the account exists
+    String query = "SELECT * FROM users WHERE u_un = ?";
+    PreparedStatement pstmt = connector.getConnection().prepareStatement(query);
+    pstmt.setString(1, username);
+    ResultSet resultSet = pstmt.executeQuery();
+
+    if (!resultSet.next()) {
+        JOptionPane.showMessageDialog(this, "Account doesn't exist.");
         return;
     }
 
-    // Create a database connection
-    dbConnect db = new dbConnect();  // Instantiate dbConnector
-    Connection con = db.getConnection(); // Get connection
-        try {
-            String query = "SELECT * FROM users WHERE u_un = '" + username + "'";
-            PreparedStatement pstmt = connector.getConnection().prepareStatement(query);
+    answer = resultSet.getString("sec_ans");
 
-            ResultSet resultSet = pstmt.executeQuery();
+} catch (SQLException ex) {
+    System.out.println("SQL Exception: " + ex);
+    return;
+}
 
-            if (resultSet.next()) {
-                answer = resultSet.getString("sec_ans");
-            }
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: " + ex);
+if (answer == null || answer.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "You did not set a password recovery for your account.");
+    loginForm l = new loginForm();
+    l.setVisible(true);
+    this.dispose();
+} else {
+    try {
+        PreparedStatement stmt = con.prepareStatement(
+            "SELECT sec_ques, sec_ans FROM users WHERE u_un = ?"
+        );
+        stmt.setString(1, username);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            secq.removeAllItems();
+            secq.addItem(rs.getString("sec_ques"));
+            secq.setEnabled(true);
+            correctAnswer = rs.getString("sec_ans");
+            confirm.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Username not found.");
         }
 
-    if (con == null) {
-        JOptionPane.showMessageDialog(this, "Database connection failed. Please try again later.");
-        return;
-    }else if(answer.equals(""))
-    {
-        JOptionPane.showMessageDialog(this, "You did not set a password recovery for your account.");
-        loginForm l = new loginForm();
-        l.setVisible(true);
-        this.dispose();
-    }else
-    {
-
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "An error occurred while fetching the security question.");
+    } finally {
         try {
-            PreparedStatement stmt = con.prepareStatement(
-                "SELECT sec_ques, sec_ans FROM users WHERE u_un = ?"
-            );
-            stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                secq.removeAllItems();
-                secq.addItem(rs.getString("sec_ques"));
-                secq.setEnabled(true);
-                correctAnswer = rs.getString("sec_ans");
-                confirm.setEnabled(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Username not found.");
+            if (con != null) {
+                con.close(); // Close the connection after use
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "An error occurred while fetching the security question.");
-        } finally {
-            try {
-                if (con != null) {
-                    con.close(); // Close the connection after use
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-    }       
-   
+    }
+}
+
     }//GEN-LAST:event_searchMouseClicked
 
     private void blexitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blexitMouseClicked

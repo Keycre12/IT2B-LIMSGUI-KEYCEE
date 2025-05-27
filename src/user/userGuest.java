@@ -137,7 +137,7 @@ public class userGuest extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 480, 360));
 
         jLabel7.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
-        jLabel7.setText("Search Book Title......");
+        jLabel7.setText("Search Book Here...");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 265, -1));
 
         bookname.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N

@@ -6,6 +6,7 @@
 package user;
 
 import admin.adminUsers;
+import config.Session;
 import config.dbConnect;
 import java.awt.Color;
 import java.awt.Image;
@@ -38,30 +39,30 @@ public class createBookForm extends javax.swing.JFrame {
     public createBookForm() {
         initComponents();
     }
-    public boolean updateCheck() {
-    dbConnect dbc = new dbConnect();
-    try {
-        String query = "SELECT * FROM books WHERE (b_isbn = '" + isbn.getText() + "' OR b_title = '" + title.getText() + "') AND b_id !='"+uid.getText()+"'";
-        ResultSet resultSet = dbc.getData(query);
-        
-        if (resultSet.next()) {
-            if (resultSet.getString("b_title").equals(title.getText())) {
-                JOptionPane.showMessageDialog(null, "Email is already used!");
-                title.setText(""); 
-                return true;  
-            }
-
-            if (resultSet.getString("b_isbn").equals(isbn.getText())) {
-                JOptionPane.showMessageDialog(null, "Username is already used!!");
-                isbn.setText("");  // Clear username field
-                return true;  // Stop further checks
-            }
-        }
-    } catch (SQLException ex) {
-        System.out.println("SQL Error: " + ex);
-    }
-    return false;  
-    }
+//    public boolean updateCheck() {
+//    dbConnect dbc = new dbConnect();
+//    try {
+//        String query = "SELECT * FROM books WHERE (b_isbn = '" + isbn.getText() + "' OR b_title = '" + title.getText() + "') AND b_id !='"+uid.getText()+"'";
+//        ResultSet resultSet = dbc.getData(query);
+//        
+//        if (resultSet.next()) {
+//            if (resultSet.getString("b_title").equals(title.getText())) {
+//                JOptionPane.showMessageDialog(null, "Email is already used!");
+//                title.setText(""); 
+//                return true;  
+//            }
+//
+//            if (resultSet.getString("b_isbn").equals(isbn.getText())) {
+//                JOptionPane.showMessageDialog(null, "Username is already used!!");
+//                isbn.setText("");  // Clear username field
+//                return true;  // Stop further checks
+//            }
+//        }
+//    } catch (SQLException ex) {
+//        System.out.println("SQL Error: " + ex);
+//    }
+//    return false;  
+//    }
     public String destination = "";
     File selectedFile;
     public String oldpath;
@@ -72,7 +73,7 @@ public class createBookForm extends javax.swing.JFrame {
         File file = new File(path);
         String fileName = file.getName();
 
-        Path filePath = Paths.get("src/userimages", fileName);
+        Path filePath = Paths.get("src/bookimages", fileName);
          boolean fileExists = Files.exists(filePath);
 
         if (fileExists) {
@@ -86,15 +87,12 @@ public class createBookForm extends javax.swing.JFrame {
     
     public static int getHeightFromWidth(String imagePath, int desiredWidth) {
         try {
-            // Read the image file
             File imageFile = new File(imagePath);
             BufferedImage image = ImageIO.read(imageFile);
 
-            // Get the original width and height of the image
             int originalWidth = image.getWidth();
             int originalHeight = image.getHeight();
 
-            // Calculate the new height based on the desired width and the aspect ratio
             int newHeight = (int) ((double) desiredWidth / originalWidth * originalHeight);
 
             return newHeight;
@@ -187,14 +185,10 @@ public class createBookForm extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         title = new javax.swing.JTextField();
         author = new javax.swing.JTextField();
         cat = new javax.swing.JTextField();
         pub = new javax.swing.JTextField();
-        lef = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
         navi1 = new javax.swing.JPanel();
         bdel = new javax.swing.JButton();
         bref = new javax.swing.JButton();
@@ -203,24 +197,24 @@ public class createBookForm extends javax.swing.JFrame {
         bcan = new javax.swing.JButton();
         badd = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        uid = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        JPanel = new javax.swing.JPanel();
-        image = new javax.swing.JLabel();
-        remove = new javax.swing.JButton();
-        select = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         isbn = new javax.swing.JTextField();
-        qty = new javax.swing.JTextField();
-        bor = new javax.swing.JTextField();
-        dam = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        los = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
         isbnlab = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        JPanel = new javax.swing.JPanel();
+        image = new javax.swing.JLabel();
+        select = new javax.swing.JButton();
+        remove = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        uid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Header.setBackground(new java.awt.Color(255, 204, 102));
@@ -231,7 +225,7 @@ public class createBookForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ADD BOOK");
-        Header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 840, 80));
+        Header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 630, 80));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -239,9 +233,9 @@ public class createBookForm extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        Header.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, 90, 70));
+        Header.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 90, 70));
 
-        getContentPane().add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 1010, 90));
+        getContentPane().add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 90));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("Author:");
@@ -254,14 +248,6 @@ public class createBookForm extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setText("Publisher:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 83, 40));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel4.setText("Total Qty:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, 90, 40));
-
-        jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel12.setText("Total Lost:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, 90, 40));
 
         title.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         title.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -319,30 +305,13 @@ public class createBookForm extends javax.swing.JFrame {
         });
         getContentPane().add(pub, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, 260, 40));
 
-        lef.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        lef.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        lef.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lefActionPerformed(evt);
-            }
-        });
-        lef.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                lefKeyReleased(evt);
-            }
-        });
-        getContentPane().add(lef, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 640, 110, 40));
-
-        jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel13.setText("Total Damage:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 580, 150, 40));
-
         navi1.setBackground(new java.awt.Color(102, 102, 102));
         navi1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         navi1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bdel.setBackground(new java.awt.Color(102, 102, 102));
-        bdel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        bdel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        bdel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/del.png"))); // NOI18N
         bdel.setText("DELETE");
         bdel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -357,7 +326,7 @@ public class createBookForm extends javax.swing.JFrame {
                 bdelActionPerformed(evt);
             }
         });
-        navi1.add(bdel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 170, 50));
+        navi1.add(bdel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 170, 50));
 
         bref.setBackground(new java.awt.Color(102, 102, 102));
         bref.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -375,10 +344,11 @@ public class createBookForm extends javax.swing.JFrame {
                 brefActionPerformed(evt);
             }
         });
-        navi1.add(bref, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 170, 50));
+        navi1.add(bref, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 170, 50));
 
         bedit.setBackground(new java.awt.Color(102, 102, 102));
-        bedit.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        bedit.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        bedit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         bedit.setText("UPDATE");
         bedit.setEnabled(false);
         bedit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -397,7 +367,7 @@ public class createBookForm extends javax.swing.JFrame {
                 beditActionPerformed(evt);
             }
         });
-        navi1.add(bedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 170, 50));
+        navi1.add(bedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 50));
 
         bclear.setBackground(new java.awt.Color(102, 102, 102));
         bclear.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -415,7 +385,7 @@ public class createBookForm extends javax.swing.JFrame {
                 bclearActionPerformed(evt);
             }
         });
-        navi1.add(bclear, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 170, 50));
+        navi1.add(bclear, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 170, 50));
 
         bcan.setBackground(new java.awt.Color(102, 102, 102));
         bcan.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -433,10 +403,11 @@ public class createBookForm extends javax.swing.JFrame {
                 bcanActionPerformed(evt);
             }
         });
-        navi1.add(bcan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 170, 50));
+        navi1.add(bcan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 170, 50));
 
         badd.setBackground(new java.awt.Color(102, 102, 102));
-        badd.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        badd.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        badd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         badd.setText("ADD");
         badd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -454,56 +425,48 @@ public class createBookForm extends javax.swing.JFrame {
                 baddActionPerformed(evt);
             }
         });
-        navi1.add(badd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 170, 50));
+        navi1.add(badd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, 50));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setText("USER ID:");
-        navi1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, 90, 40));
+        navi1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 90, 40));
 
-        getContentPane().add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 210, 600));
-
-        uid.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        uid.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        uid.setEnabled(false);
-        uid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uidActionPerformed(evt);
-            }
-        });
-        uid.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                uidKeyReleased(evt);
-            }
-        });
-        getContentPane().add(uid, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 260, 40));
+        getContentPane().add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 210, 440));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel14.setText("Book Title:");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 90, 50));
 
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel15.setText("Book ISBN:");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 90, 50));
+
+        isbn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        isbn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        isbn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isbnActionPerformed(evt);
+            }
+        });
+        isbn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                isbnKeyReleased(evt);
+            }
+        });
+        getContentPane().add(isbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 260, 40));
+
+        isbnlab.setForeground(new java.awt.Color(204, 0, 51));
+        getContentPane().add(isbnlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 260, 20));
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         JPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(8, 8, 8, 8, new java.awt.Color(0, 0, 0)));
         JPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         JPanel.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 220, 300));
 
-        getContentPane().add(JPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, 240, 320));
-
-        remove.setBackground(new java.awt.Color(102, 102, 102));
-        remove.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        remove.setText("REMOVE");
-        remove.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                removeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                removeMouseExited(evt);
-            }
-        });
-        remove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeActionPerformed(evt);
-            }
-        });
-        getContentPane().add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 440, 90, 50));
+        jPanel1.add(JPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 240, 320));
 
         select.setBackground(new java.awt.Color(102, 102, 102));
         select.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -524,100 +487,46 @@ public class createBookForm extends javax.swing.JFrame {
                 selectActionPerformed(evt);
             }
         });
-        getContentPane().add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 440, 90, 50));
+        jPanel1.add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, 90, 50));
 
-        jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel15.setText("Book ISBN:");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 90, 50));
-
-        isbn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        isbn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        isbn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                isbnActionPerformed(evt);
+        remove.setBackground(new java.awt.Color(102, 102, 102));
+        remove.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        remove.setText("REMOVE");
+        remove.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                removeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                removeMouseExited(evt);
             }
         });
-        isbn.addKeyListener(new java.awt.event.KeyAdapter() {
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, 90, 50));
+
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel12.setText("Book ID:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 90, 40));
+
+        uid.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        uid.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        uid.setEnabled(false);
+        uid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uidActionPerformed(evt);
+            }
+        });
+        uid.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                isbnKeyReleased(evt);
+                uidKeyReleased(evt);
             }
         });
-        getContentPane().add(isbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 260, 40));
+        jPanel1.add(uid, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 260, 40));
 
-        qty.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        qty.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        qty.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                qtyActionPerformed(evt);
-            }
-        });
-        qty.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                qtyKeyReleased(evt);
-            }
-        });
-        getContentPane().add(qty, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 260, 40));
-
-        bor.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        bor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        bor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                borActionPerformed(evt);
-            }
-        });
-        bor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                borKeyReleased(evt);
-            }
-        });
-        getContentPane().add(bor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 520, 130, 40));
-
-        dam.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        dam.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        dam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                damActionPerformed(evt);
-            }
-        });
-        dam.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                damKeyReleased(evt);
-            }
-        });
-        getContentPane().add(dam, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 580, 130, 40));
-
-        jButton1.setText("Books Left:");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 640, 100, 40));
-
-        los.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        los.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        los.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                losActionPerformed(evt);
-            }
-        });
-        los.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                losKeyReleased(evt);
-            }
-        });
-        getContentPane().add(los, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 520, 130, 40));
-
-        jLabel16.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel16.setText("Total Borrowed:");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 520, 170, 40));
-
-        isbnlab.setForeground(new java.awt.Color(204, 0, 51));
-        getContentPane().add(isbnlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 260, 20));
-
-        jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel17.setText("Book ID:");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 90, 40));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 990, 440));
 
         pack();
         setLocationRelativeTo(null);
@@ -655,14 +564,6 @@ public class createBookForm extends javax.swing.JFrame {
  
     }//GEN-LAST:event_pubKeyReleased
 
-    private void lefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lefActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lefActionPerformed
-
-    private void lefKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lefKeyReleased
-     
-    }//GEN-LAST:event_lefKeyReleased
-
     private void bdelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bdelMouseEntered
         bdel.setBackground(hovercolor);
     }//GEN-LAST:event_bdelMouseEntered
@@ -697,8 +598,6 @@ public class createBookForm extends javax.swing.JFrame {
 
     private void beditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beditActionPerformed
 
-//   
-
     }//GEN-LAST:event_beditActionPerformed
 
     private void bclearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclearMouseEntered
@@ -730,8 +629,7 @@ public class createBookForm extends javax.swing.JFrame {
     private void baddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baddMouseClicked
         createBookForm cbf = new createBookForm();
         cbf.setVisible(true);
-        cbf.remove.setEnabled(false);
-        cbf.select.setEnabled(true);
+
         this.dispose();
 
     }//GEN-LAST:event_baddMouseClicked
@@ -745,98 +643,136 @@ public class createBookForm extends javax.swing.JFrame {
     }//GEN-LAST:event_baddMouseExited
 
     private void baddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baddActionPerformed
-        if (title.getText().isEmpty()
-                || isbn.getText().isEmpty()
+          if (isbn.getText().isEmpty()
+                || title.getText().isEmpty()
                 || author.getText().isEmpty()
-                || pub.getText().isEmpty()
-                || qty.getText().isEmpty()
-                || bor.getText().isEmpty()
-                || dam.getText().isEmpty()) {
+                || cat.getText().isEmpty()
+                || pub.getText().isEmpty()) {
 
-            JOptionPane.showMessageDialog(null, "All fields are required");
-            return;
-
-        } else if (updateBookCheck()) {  // Only called during add
-            System.out.println("Duplicate Exist");
+            JOptionPane.showMessageDialog(null, "All fields are required.");
             return;
 
         } else if (!isbn.getText().matches("[0-9Xx]{10}")) {
-            JOptionPane.showMessageDialog(null, "Invalid ISBN. It must be exactly 10 characters");
-            return;
-
-        } else if (!qty.getText().matches("\\d+")
-                || !bor.getText().matches("\\d+")
-                || !dam.getText().matches("\\d+")) {
-
-            JOptionPane.showMessageDialog(null, "Quantity, Borrowed, and Damaged must be positive whole numbers.");
+            JOptionPane.showMessageDialog(null, "Invalid ISBN. It must be exactly 10 characters (digits or 'X').");
             return;
 
         } else {
-            int quant = Integer.parseInt(qty.getText());
-            int borrowed = Integer.parseInt(bor.getText());
-            int damaged = Integer.parseInt(dam.getText());
-            int lost = Integer.parseInt(los.getText());
-
-            if (borrowed + damaged > quant) {
-                JOptionPane.showMessageDialog(null, "Borrowed and Damaged books cannot exceed Total Quantity.");
-                return;
-            }
-
-            int left = quant - borrowed - damaged;
-            lef.setText(String.valueOf(left)); // Auto-set available
-
             dbConnect dbc = new dbConnect();
 
-            int rowsInserted = dbc.insertData("INSERT INTO books (b_isbn, b_title, b_category, b_author, publisher, quantity, borrowed, damaged, lost, available, b_image) "
-                    + "VALUES('" + isbn.getText() + "', '" + title.getText() + "', '" + cat.getText() + "', "
-                    + "'" + author.getText() + "', '" + pub.getText() + "', " + quant + ", "
-                    + borrowed + ", " + damaged + ", " + lost + ",  " + left + ", '" + destination + "')");
 
-            if (rowsInserted > 0) {
-                try {
+            try {
+                String query = "INSERT INTO books ( b_isbn, b_title, b_category, b_author, publisher, b_image, b_status) " +
+                       "VALUES ('" + isbn.getText() + "', '" + title.getText() + "', '" + cat.getText() + "', '" + author.getText() + "', '" + pub.getText() + "', '" + destination + "', 'PENDING')";
+
+
+                if (dbc.insertData(query) == 1) {
                     if (selectedFile != null) {
-                        Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                        try {
+                            Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                        } catch (IOException ex) {
+                            System.out.println("Insert Image Error: " + ex);
+                            JOptionPane.showMessageDialog(null, "Image saving failed: " + ex.getMessage());
+                        }
                     }
-                    JOptionPane.showMessageDialog(null, "Book Registered Successfully!");
-                    dispBooks disp = new dispBooks();
-                    disp.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Book submitted for approval.");
+                    dispBooks udd = new dispBooks();
+                    udd.setVisible(true);
                     this.dispose();
-                } catch (IOException ex) {
-                    System.out.println("Insert Image Error: " + ex);
-                    JOptionPane.showMessageDialog(null, "Image saving failed: " + ex.getMessage());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error while adding the book.");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Book Registration Failed!");
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "An error occurred: " + ex.getMessage());
+                ex.printStackTrace();
             }
         }
 
 
-
     }//GEN-LAST:event_baddActionPerformed
 
-    private void uidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uidActionPerformed
+    private void isbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_uidActionPerformed
+    }//GEN-LAST:event_isbnActionPerformed
 
-    private void uidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_uidKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_uidKeyReleased
+    private void isbnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_isbnKeyReleased
+        String PATTERN = "[0-9Xx]{10}$";
+        Pattern pt = Pattern.compile(PATTERN);
+        Matcher match = pt.matcher(isbn.getText());
 
-    private void removeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeMouseEntered
+        if (!match.matches()) {
+            isbnlab.setText("Invalid ISBN. It must be exactly 10 characters");
+        } else {
+            isbnlab.setText(null);
+        }
+    }//GEN-LAST:event_isbnKeyReleased
 
-    private void removeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeMouseExited
+    private void beditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditMouseClicked
 
-    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
-        remove.setEnabled(false);
-        select.setEnabled(true);
-        image.setIcon(null);
-        destination = "";
-        path = "";
-    }//GEN-LAST:event_removeActionPerformed
+//        if (isbn.getText().isEmpty()
+//               || title.getText().isEmpty()
+//               || cat.getText().isEmpty()
+//               || author.getText().isEmpty()
+//               || pub.getText().isEmpty()) {
+//           JOptionPane.showMessageDialog(null, "All fields are required");
+//           return;
+//       } else {
+//           dbConnect dbc = new dbConnect();
+//
+//           dbc.updateData("UPDATE books SET b_isbn = '" + isbn.getText() + "', b_title = '" + title.getText() + "', "
+//                   + "b_category = '" + cat.getText() + "', b_author = '" + author.getText() + "', publisher = '" + pub.getText() + "' ,b_image = '" + destination + "' WHERE b_id = '" + uid.getText() + "'");
+//
+//
+//           dispBooks db = new dispBooks();
+//           db.setVisible(true);
+//           this.dispose();
+//       }
+
+        if (isbn.getText().isEmpty()
+        || title.getText().isEmpty()
+        || cat.getText().isEmpty()
+        || author.getText().isEmpty()
+        || pub.getText().isEmpty()) {
+    JOptionPane.showMessageDialog(null, "All fields are required");
+    return;
+} else {
+    dbConnect dbc = new dbConnect();
+
+    dbc.updateData("UPDATE books SET b_isbn = '" + isbn.getText() + "', b_title = '" + title.getText() + "', "
+            + "b_category = '" + cat.getText() + "', b_author = '" + author.getText() + "', publisher = '" + pub.getText() + "', "
+            + " b_image = '" + destination + "' WHERE b_id = '" + uid.getText() + "'");
+        
+    if(destination.isEmpty()){
+        File existingFile = new File(oldpath);
+        if(existingFile.exists()) {
+            existingFile.delete();
+        }
+    } else {
+        if(!(oldpath.equals(destination))) {
+            imageUpdater(oldpath,destination);
+        }
+    }
+    
+    dispBooks db = new dispBooks();
+    db.setVisible(true);
+    this.dispose();
+}
+
+    
+    }//GEN-LAST:event_beditMouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    dispBooks db = new dispBooks();
+    db.setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Session ses = Session.getInstance();
+ 
+
+        
+    }//GEN-LAST:event_formWindowActivated
 
     private void selectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseClicked
 
@@ -857,7 +793,7 @@ public class createBookForm extends javax.swing.JFrame {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             try {
                 selectedFile = fileChooser.getSelectedFile();
-                destination = "src/userimages/" + selectedFile.getName();
+                destination = "src/bookimages/" + selectedFile.getName();
                 path = selectedFile.getAbsolutePath();
 
                 if (FileExistenceChecker(path) == 1) {
@@ -875,178 +811,29 @@ public class createBookForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_selectActionPerformed
 
-    private void isbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbnActionPerformed
+    private void removeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_isbnActionPerformed
+    }//GEN-LAST:event_removeMouseEntered
 
-    private void isbnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_isbnKeyReleased
-        String PATTERN = "[0-9Xx]{10}$";
-        Pattern pt = Pattern.compile(PATTERN);
-        Matcher match = pt.matcher(isbn.getText());
-
-        if (!match.matches()) {
-            isbnlab.setText("Invalid ISBN. It must be exactly 10 characters");
-        } else {
-            isbnlab.setText(null);
-        }
-    }//GEN-LAST:event_isbnKeyReleased
-
-    private void qtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qtyActionPerformed
+    private void removeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_qtyActionPerformed
+    }//GEN-LAST:event_removeMouseExited
 
-    private void qtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyKeyReleased
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
+        remove.setEnabled(false);
+        select.setEnabled(true);
+        image.setIcon(null);
+        destination = "";
+        path = "";
+    }//GEN-LAST:event_removeActionPerformed
+
+    private void uidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_qtyKeyReleased
+    }//GEN-LAST:event_uidActionPerformed
 
-    private void borActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borActionPerformed
+    private void uidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_uidKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_borActionPerformed
-
-    private void borKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_borKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_borKeyReleased
-
-    private void damActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_damActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_damActionPerformed
-
-    private void damKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_damKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_damKeyReleased
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String qtyText = qty.getText();
-        String borText = bor.getText();
-        String damagedText = dam.getText();
-        String lostText = los.getText();
-
-        if (!qtyText.matches("\\d+") || !borText.matches("\\d+") || !damagedText.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "Please enter valid positive whole numbers for Quantity, Borrowed, and Damaged.");
-            return;
-        }
-
-        int qtyVal = Integer.parseInt(qtyText);
-        int borrowed = Integer.parseInt(borText);
-        int damaged = Integer.parseInt(damagedText);
-        int lost = Integer.parseInt(lostText);
-
-        if (borrowed + damaged > qtyVal) {
-            JOptionPane.showMessageDialog(null, "Borrowed + Damaged cannot exceed Total Quantity.");
-            return;
-        }
-
-        int left = qtyVal - borrowed - damaged - lost;
-        lef.setText(String.valueOf(left));
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void beditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditMouseClicked
-//        if (qty.getText().isEmpty()
-//    || bor.getText().isEmpty()
-//    || dam.getText().isEmpty()) {
-//
-//    JOptionPane.showMessageDialog(null, "All numeric fields are required");
-//    return;
-//
-//} else if (!qty.getText().matches("\\d+")
-//        || !bor.getText().matches("\\d+")
-//        || !dam.getText().matches("\\d+")) {
-//
-//    JOptionPane.showMessageDialog(null, "Quantity, Borrowed, and Damaged must be positive whole numbers.");
-//    return;
-//
-//} else {
-//    int quant = Integer.parseInt(qty.getText());
-//    int borrowed = Integer.parseInt(bor.getText());
-//    int damaged = Integer.parseInt(dam.getText());
-//
-//    if (borrowed + damaged > quant) {
-//        JOptionPane.showMessageDialog(null, "Borrowed and Damaged books cannot exceed Total Quantity.");
-//        return;
-//    }
-//
-//    int available = quant - borrowed - damaged;
-//    lef.setText(String.valueOf(available));
-//
-//    try {
-//        dbConnect dbc = new dbConnect();
-//        dbc.updateData("UPDATE books SET quantity = '" + qty.getText() + "', borrowed = '" + bor.getText() + "', "
-//                + "damaged = '" + dam.getText() + "', available = '" + lef.getText() + "', b_image = '" + destination + "' WHERE b_id = '" + uid.getText() + "'");
-//            
-//        if(destination.isEmpty()){
-//            File existingFile = new File(oldpath);
-//            if(existingFile.exists())
-//            {
-//                existingFile.delete();
-//            }
-//        }else{
-//            if(!(oldpath.equals(destination)))
-//            {
-//                imageUpdater(oldpath,destination);
-//            }
-//        }
-//
-//        JOptionPane.showMessageDialog(null, "Book Updated Successfully!");
-//        dispBooks disp = new dispBooks();
-//        disp.setVisible(true);
-//        this.dispose();
-//    } catch (Exception e) {
-//        JOptionPane.showMessageDialog(null, "Error updating data: " + e.getMessage());
-//    }
-//}
-
- if (isbn.getText().isEmpty()
-        || title.getText().isEmpty()
-        || cat.getText().isEmpty()
-        || author.getText().isEmpty()
-        || pub.getText().isEmpty()
-        || qty.getText().isEmpty()
-        || bor.getText().isEmpty()
-        || dam.getText().isEmpty()
-        || lef.getText().isEmpty()) {
-    JOptionPane.showMessageDialog(null, "All fields are required");
-    return;
-} else {
-    dbConnect dbc = new dbConnect();
-
-    dbc.updateData("UPDATE books SET b_isbn = '" + isbn.getText() + "', b_title = '" + title.getText() + "', "
-            + "b_category = '" + cat.getText() + "', b_author = '" + author.getText() + "', publisher = '" + pub.getText() + "', "
-            + "quantity = '" + qty.getText() + "', borrowed = '" + bor.getText() + "', damaged = '" + dam.getText() + "', lost = '" + los.getText() + "', "
-            + "available = '" + lef.getText() + "', b_image = '" + destination + "' WHERE b_id = '" + uid.getText() + "'");
-
-    if (destination == null || destination.isEmpty()) {
-        File existingFile = new File(oldpath);
-        if (existingFile.exists()) {
-            existingFile.delete();
-        }
-    } else {
-        if (!oldpath.equals(destination)) {
-            imageUpdater(oldpath, destination);
-        }
-    }
-
-    dispBooks db = new dispBooks();
-    db.setVisible(true);
-    this.dispose();
-}
-
-    
-    }//GEN-LAST:event_beditMouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        dispBooks db = new dispBooks();
-        db.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void losActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_losActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_losActionPerformed
-
-    private void losKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_losKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_losKeyReleased
+    }//GEN-LAST:event_uidKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1092,32 +879,23 @@ public class createBookForm extends javax.swing.JFrame {
     public javax.swing.JButton bclear;
     public javax.swing.JButton bdel;
     public javax.swing.JButton bedit;
-    public javax.swing.JTextField bor;
     public javax.swing.JButton bref;
     public javax.swing.JTextField cat;
-    public javax.swing.JTextField dam;
     public javax.swing.JLabel image;
     public javax.swing.JTextField isbn;
     private javax.swing.JLabel isbnlab;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    public javax.swing.JTextField lef;
-    public javax.swing.JTextField los;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel navi1;
     public javax.swing.JTextField pub;
-    public javax.swing.JTextField qty;
     public javax.swing.JButton remove;
     public javax.swing.JButton select;
     public javax.swing.JTextField title;

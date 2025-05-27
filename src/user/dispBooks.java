@@ -41,7 +41,7 @@ public class dispBooks extends javax.swing.JFrame {
         try{
             dbConnect dbc = new dbConnect();
             ResultSet rs = dbc.getData("SELECT b_id AS 'ID', b_title AS 'Book Title', b_category AS 'Category', " +
-             "b_author AS 'Author', publisher AS 'Publisher', quantity AS 'Quantity', borrowed AS 'Borrowed', damaged AS 'Damaged', lost AS 'Lost', available AS 'Available' FROM books");
+             "b_author AS 'Author', publisher AS 'Publisher' FROM books");
             books_tbl.setModel(DbUtils.resultSetToTableModel(rs));
              rs.close();
         }catch(SQLException ex){
@@ -67,7 +67,7 @@ public class dispBooks extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         p_edit = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        f_name = new javax.swing.JLabel();
         p_delete = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -77,6 +77,11 @@ public class dispBooks extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         Header.setBackground(new java.awt.Color(255, 204, 102));
         Header.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -162,9 +167,9 @@ public class dispBooks extends javax.swing.JFrame {
 
         navi.add(p_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 230, 50));
 
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel10.setText("USERS");
-        navi.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 90, 30));
+        f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        f_name.setText("USERS");
+        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 90, 30));
 
         p_delete.setBackground(new java.awt.Color(102, 102, 102));
         p_delete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -306,11 +311,8 @@ public class dispBooks extends javax.swing.JFrame {
             bk.cat.setText(rs.getString("b_category"));
             bk.author.setText(rs.getString("b_author"));
             bk.pub.setText(rs.getString("publisher"));
-            bk.qty.setText(rs.getString("quantity"));
-            bk.bor.setText(rs.getString("borrowed"));
-            bk.dam.setText(rs.getString("damaged"));
-            bk.los.setText(rs.getString("lost"));
-            bk.lef.setText(rs.getString("available"));
+            bk.isbn.setEnabled(false);
+
 
             String imagePath = rs.getString("b_image");
             bk.image.setIcon(bk.ResizeImage(imagePath, null, bk.image));
@@ -446,46 +448,42 @@ public class dispBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_p_deleteMouseExited
 
     private void printMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printMouseClicked
-//        int rowIndex = books_tbl.getSelectedRow();
-//
-//        if (rowIndex < 0) {
-//            JOptionPane.showMessageDialog(null, "Please Select an Item");
-//        } else {
-//            try {
-//                dbConnect dbc = new dbConnect();
-//                TableModel tbl = books_tbl.getModel();
-//                ResultSet rs = dbc.getData("SELECT * FROM users WHERE u_id = '" + tbl.getValueAt(rowIndex, 0) + "'");
-//                if (rs.next()) {
-//                    individualPrinting ipt = new individualPrinting();
-//                    ipt.uid.setText(""+rs.getInt("u_id"));
-//                    ipt.fn.setText("" + rs.getString("u_fname"));
-//                    ipt.ln.setText("" + rs.getString("u_lname"));
-//                    ipt.phone.setText("" + rs.getString("u_contact"));
-//                    ipt.email.setText("" + rs.getString("u_email"));
-//                    ipt.un.setText("" + rs.getString("u_un"));
-//                    ipt.at.setText(""+rs.getString("u_type"));
-//                    ipt.st.setText(""+rs.getString("status"));
-//                    ipt.image.setIcon(ipt.ResizeImage(rs.getString("u_image"), null, ipt.image));
-//                    ipt.setVisible(true);
-//                    this.dispose();
-//                }
-//            } catch (SQLException ex) {
-//                System.out.println("" + ex);
-//            }
-//        }
+            int rowIndex = books_tbl.getSelectedRow();
 
-            
-        MessageFormat header = new MessageFormat(
-        "Matrix Library Inventory Reports     " + java.time.LocalDate.now());
-        MessageFormat footer = new MessageFormat("Page {0, number, integer}");
-
+    if (rowIndex < 0) {
+        JOptionPane.showMessageDialog(null, "Please Select an Item");
+    } else {
         try {
-            books_tbl.print(JTable.PrintMode.FIT_WIDTH, header, footer);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            dbConnect dbc = new dbConnect();
+            TableModel tbl = books_tbl.getModel();
+            ResultSet rs = dbc.getData("SELECT * FROM books WHERE b_id = '" + tbl.getValueAt(rowIndex, 0) + "'");
+            if (rs.next()) {
+                soloprintbooks spb = new soloprintbooks();
+                spb.uid.setText(""+rs.getInt("b_id"));
+                spb.isbn.setText("" + rs.getString("b_isbn"));
+                spb.title.setText("" + rs.getString("b_title"));
+                spb.author.setText("" + rs.getString("b_author"));
+                spb.cat.setText("" + rs.getString("b_category"));
+                spb.pub.setText("" + rs.getString("publisher"));
+                spb.image.setIcon(spb.ResizeImage(rs.getString("b_image"), null, spb.image));
+                spb.setVisible(true);
+                this.dispose();
+            }
+        } catch (SQLException ex) {
+            System.out.println("" + ex);
         }
+    }
+    
 
     }//GEN-LAST:event_printMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Session ses = Session.getInstance();
+        f_name.setText(""+ses.getUid());
+        accid.setText(""+ses.getUid());
+
+        
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -526,8 +524,8 @@ public class dispBooks extends javax.swing.JFrame {
     private javax.swing.JPanel Header;
     private javax.swing.JLabel accid;
     public javax.swing.JTable books_tbl;
+    private javax.swing.JLabel f_name;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

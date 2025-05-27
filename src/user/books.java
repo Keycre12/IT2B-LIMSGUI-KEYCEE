@@ -47,14 +47,6 @@ public class books extends javax.swing.JFrame {
         isbn = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        dam = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        qty = new javax.swing.JTextField();
-        lef = new javax.swing.JTextField();
-        bor = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -96,7 +88,7 @@ public class books extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Publisher:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 90, 40));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 360, 90, 40));
 
         pub.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         pub.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -110,7 +102,7 @@ public class books extends javax.swing.JFrame {
                 pubKeyReleased(evt);
             }
         });
-        getContentPane().add(pub, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, 260, 40));
+        getContentPane().add(pub, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, 260, 40));
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -120,7 +112,7 @@ public class books extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, 110, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 450, 100, 40));
 
         ADD.setBackground(new java.awt.Color(204, 204, 204));
         ADD.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -130,11 +122,11 @@ public class books extends javax.swing.JFrame {
                 ADDActionPerformed(evt);
             }
         });
-        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 450, 110, 40));
+        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 450, 100, 40));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("Author:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 90, 50));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, 90, 50));
 
         author.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         author.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -148,7 +140,7 @@ public class books extends javax.swing.JFrame {
                 authorKeyReleased(evt);
             }
         });
-        getContentPane().add(author, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, 260, 40));
+        getContentPane().add(author, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 230, 260, 40));
 
         title.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         title.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -162,11 +154,11 @@ public class books extends javax.swing.JFrame {
                 titleKeyReleased(evt);
             }
         });
-        getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 260, 40));
+        getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 260, 40));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setText("Category:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 110, 40));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 110, 40));
 
         cat.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         cat.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -180,7 +172,7 @@ public class books extends javax.swing.JFrame {
                 catKeyReleased(evt);
             }
         });
-        getContentPane().add(cat, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 260, 40));
+        getContentPane().add(cat, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 290, 260, 40));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -207,48 +199,15 @@ public class books extends javax.swing.JFrame {
                 isbnKeyReleased(evt);
             }
         });
-        getContentPane().add(isbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 260, 40));
+        getContentPane().add(isbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, 260, 40));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel12.setText("Book Title:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 90, 50));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 90, 50));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel11.setText("Book ISBN:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 90, 50));
-
-        jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel13.setText("Total Quantity:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 90, 160, 20));
-
-        jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel14.setText("Total Book Borrowed:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 150, 160, 20));
-
-        dam.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(dam, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 230, 120, 40));
-
-        jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel15.setText("Total Book Damaged:");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 210, 160, 20));
-
-        qty.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(qty, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 110, 120, 40));
-
-        lef.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(lef, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, 120, 40));
-
-        bor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(bor, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 170, 120, 40));
-
-        jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton2.setText("Book Left:");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 310, 120, 30));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 90, 50));
 
         pack();
         setLocationRelativeTo(null);
@@ -263,65 +222,69 @@ public class books extends javax.swing.JFrame {
     }//GEN-LAST:event_pubKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+    UserDashboard udd = new UserDashboard();
+    udd.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADDActionPerformed
 
-      if (isbn.getText().isEmpty()
-        || title.getText().isEmpty()
-        || author.getText().isEmpty()
-        || cat.getText().isEmpty()
-        || pub.getText().isEmpty()
-        || qty.getText().isEmpty()
-        || bor.getText().isEmpty()
-        || dam.getText().isEmpty()) {
+//      if (isbn.getText().isEmpty()
+//        || title.getText().isEmpty()
+//        || author.getText().isEmpty()
+//        || cat.getText().isEmpty()
+//        || pub.getText().isEmpty()
+//        || qty.getText().isEmpty()
+//        || bor.getText().isEmpty()
+//        || dam.getText().isEmpty()) {
 
-    JOptionPane.showMessageDialog(null, "All fields are required.");
-    return;
+//        JOptionPane.showMessageDialog(null, "All fields are required.");
+//        return;
+//
+//    } else if (!isbn.getText().matches("[0-9Xx]{10}")) {
+//        JOptionPane.showMessageDialog(null, "Invalid ISBN. It must be exactly 10 characters");
+//        return;
+//
+//    } else if (!qty.getText().matches("\\d+") ||
+//               !bor.getText().matches("\\d+") ||
+//               !dam.getText().matches("\\d+")) {
+//
+//        JOptionPane.showMessageDialog(null, "Quantity, Borrowed, and Damaged must be positive whole numbers.");
+//        return;
+//
+//    } else {
+//        int quant = Integer.parseInt(qty.getText());
+//        int borrowed = Integer.parseInt(bor.getText());
+//        int damaged = Integer.parseInt(dam.getText());
+//
+//        if (borrowed + damaged > quant) {
+//            JOptionPane.showMessageDialog(null, "Borrowed and Damaged books cannot exceed Total Quantity.");
+//            return;
+//        }
+//
+//        int left = quant - borrowed - damaged;
+//        lef.setText(String.valueOf(left)); 
+//
+//        dbConnect dbc = new dbConnect();
+//        try {
+//
+//            String query = "INSERT INTO books (b_isbn, b_title, b_category, b_author, publisher, quantity, borrowed, damaged, available) " +
+//                           "VALUES ('" + isbn.getText() + "', '" + title.getText() + "', '" + cat.getText() + "', '" + author.getText() + "', '" + pub.getText() + "', " +
+//                           qty.getText() + ", " + bor.getText() + ", " + dam.getText() + ", " + lef.getText() + ")";
+//
+//            if (dbc.insertData(query) == 1) {
+//                JOptionPane.showMessageDialog(null, "Book Added Successfully!");
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Error while adding the book.");
+//            }
+//
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(null, "An error occurred: " + ex.getMessage());
+//            ex.printStackTrace();
+//        }
+//    }
 
-} else if (!isbn.getText().matches("[0-9Xx]{10}")) {
-    JOptionPane.showMessageDialog(null, "Invalid ISBN. It must be exactly 10 characters");
-    return;
-
-} else if (!qty.getText().matches("\\d+") ||
-           !bor.getText().matches("\\d+") ||
-           !dam.getText().matches("\\d+")) {
-
-    JOptionPane.showMessageDialog(null, "Quantity, Borrowed, and Damaged must be positive whole numbers.");
-    return;
-
-} else {
-    int quant = Integer.parseInt(qty.getText());
-    int borrowed = Integer.parseInt(bor.getText());
-    int damaged = Integer.parseInt(dam.getText());
-
-    if (borrowed + damaged > quant) {
-        JOptionPane.showMessageDialog(null, "Borrowed and Damaged books cannot exceed Total Quantity.");
-        return;
-    }
-
-    int left = quant - borrowed - damaged;
-    lef.setText(String.valueOf(left)); // Auto-set total left
-
-    dbConnect dbc = new dbConnect();
-    try {
- 
-        String query = "INSERT INTO books (b_isbn, b_title, b_category, b_author, publisher, quantity, borrowed, damaged, available) " +
-                       "VALUES ('" + isbn.getText() + "', '" + title.getText() + "', '" + cat.getText() + "', '" + author.getText() + "', '" + pub.getText() + "', " +
-                       qty.getText() + ", " + bor.getText() + ", " + dam.getText() + ", " + lef.getText() + ")";
-
-        if (dbc.insertData(query) == 1) {
-            JOptionPane.showMessageDialog(null, "Book Added Successfully!");
-        } else {
-            JOptionPane.showMessageDialog(null, "Error while adding the book.");
-        }
-
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(null, "An error occurred: " + ex.getMessage());
-        ex.printStackTrace();
-    }
-}
+          
 
 
 
@@ -359,32 +322,6 @@ public class books extends javax.swing.JFrame {
     private void catActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_catActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String qtyText = qty.getText();
-        String borText = bor.getText();
-        String damagedText = dam.getText();
-
-        if (!qtyText.matches("\\d+") || !borText.matches("\\d+") || !damagedText.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "Please enter valid positive whole numbers for Quantity, Borrowed, and Damaged.");
-            return;
-        }
-
-        int qtyVal = Integer.parseInt(qtyText);
-        int borrowed = Integer.parseInt(borText);
-        int damaged = Integer.parseInt(damagedText);
-
-        if (borrowed + damaged > qtyVal) {
-            JOptionPane.showMessageDialog(null, "Borrowed + Damaged cannot exceed Total Quantity.");
-            return;
-        }
-
-        int left = qtyVal - borrowed - damaged;
-        lef.setText(String.valueOf(left));
-
-    
-
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -425,27 +362,19 @@ public class books extends javax.swing.JFrame {
     private javax.swing.JButton ADD;
     private javax.swing.JPanel Header;
     public javax.swing.JTextField author;
-    public javax.swing.JTextField bor;
     public javax.swing.JTextField cat;
-    public javax.swing.JTextField dam;
     public javax.swing.JTextField isbn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    public javax.swing.JTextField lef;
     public javax.swing.JTextField pub;
-    public javax.swing.JTextField qty;
     public javax.swing.JTextField title;
     // End of variables declaration//GEN-END:variables
 }

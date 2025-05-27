@@ -424,7 +424,7 @@ public class createUserForm extends javax.swing.JFrame {
         navi1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 230, 12));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sluser.png"))); // NOI18N
-        navi1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 120, 110));
+        navi1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 120, 110));
 
         udel.setBackground(new java.awt.Color(102, 102, 102));
         udel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N

@@ -74,12 +74,14 @@ public class accDetails extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         navi = new javax.swing.JPanel();
-        acc_lname = new javax.swing.JLabel();
+        f_name = new javax.swing.JLabel();
+        p_add1 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         p_add = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        acc_fname = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
+        l_name = new javax.swing.JLabel();
         phonelab = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         type = new javax.swing.JComboBox<>();
@@ -131,10 +133,32 @@ public class accDetails extends javax.swing.JFrame {
         navi.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         navi.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        acc_lname.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        acc_lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acc_lname.setText("USER");
-        navi.add(acc_lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 190, 40));
+        f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        f_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        f_name.setText("USER");
+        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 70, 40));
+
+        p_add1.setBackground(new java.awt.Color(102, 102, 102));
+        p_add1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        p_add1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                p_add1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                p_add1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                p_add1MouseExited(evt);
+            }
+        });
+        p_add1.setLayout(null);
+
+        jLabel14.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        jLabel14.setText("PASS RECOVERY");
+        p_add1.add(jLabel14);
+        jLabel14.setBounds(10, 0, 160, 30);
+
+        navi.add(p_add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 180, 30));
 
         p_add.setBackground(new java.awt.Color(102, 102, 102));
         p_add.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -154,23 +178,24 @@ public class accDetails extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         jLabel11.setText("CHANGE PASS");
         p_add.add(jLabel11);
-        jLabel11.setBounds(90, 0, 160, 30);
+        jLabel11.setBounds(20, 0, 140, 30);
 
-        navi.add(p_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 330, 30));
-
-        acc_fname.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        acc_fname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acc_fname.setText("USER");
-        navi.add(acc_fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 40));
+        navi.add(p_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 180, 30));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(null);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/smalluser.png"))); // NOI18N
-        jPanel1.add(jLabel7);
+        image.setText("jLabel2");
+        jPanel1.add(image);
+        image.setBounds(9, 9, 130, 140);
 
-        navi.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 140, 150));
+        navi.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 140, 150));
 
-        getContentPane().add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 70, -1, 570));
+        l_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        l_name.setText("USER");
+        navi.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
+
+        getContentPane().add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 280, 570));
 
         phonelab.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         phonelab.setForeground(new java.awt.Color(204, 0, 0));
@@ -415,21 +440,36 @@ public class accDetails extends javax.swing.JFrame {
             this.dispose();
         }else{
         iddisp.setText("USER ID:"+ses.getUid());
-        acc_fname.setText(""+ses.getFname());
-        acc_lname.setText(""+ses.getLname());
+        l_name.setText(""+ses.getFname());
+        f_name.setText(""+ses.getLname());
         fname.setText(""+ses.getFname());
         lname.setText(""+ses.getLname());
         phone.setText(""+ses.getLname());
         email.setText(""+ses.getEmail());
         uns.setText(""+ses.getUsername());
+
         }
     }//GEN-LAST:event_formWindowActivated
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         UserDashboard adb = new UserDashboard();
         adb.setVisible(true);
-        this.dispose();
+        this.dispose();        
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void p_add1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add1MouseClicked
+        userAccRec aar = new userAccRec();
+        aar.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_p_add1MouseClicked
+
+    private void p_add1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_p_add1MouseEntered
+
+    private void p_add1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_add1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_p_add1MouseExited
 
     /**
      * @param args the command line arguments
@@ -468,28 +508,30 @@ public class accDetails extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Header;
-    private javax.swing.JLabel acc_fname;
-    private javax.swing.JLabel acc_lname;
     private javax.swing.JTextField email;
     private javax.swing.JLabel emlab;
+    private javax.swing.JLabel f_name;
     private javax.swing.JTextField fname;
     private javax.swing.JLabel fnlab;
     private javax.swing.JLabel iddisp;
+    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel l_name;
     private javax.swing.JTextField lname;
     private javax.swing.JLabel lnlab;
     private javax.swing.JPanel navi;
     private javax.swing.JPanel p_add;
+    private javax.swing.JPanel p_add1;
     private javax.swing.JTextField phone;
     private javax.swing.JLabel phonelab;
     private javax.swing.JComboBox<String> type;

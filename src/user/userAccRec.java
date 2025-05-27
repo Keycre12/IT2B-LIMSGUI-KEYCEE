@@ -71,7 +71,6 @@ public class userAccRec extends javax.swing.JFrame {
 
         Header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         navi1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
@@ -81,15 +80,14 @@ public class userAccRec extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Header1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         navi2 = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
-        accid1 = new javax.swing.JLabel();
+        uid = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         acctype = new javax.swing.JLabel();
-        accfname = new javax.swing.JLabel();
-        acclname = new javax.swing.JLabel();
+        f_name = new javax.swing.JLabel();
+        l_name = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         anss = new javax.swing.JTextField();
         confirm1 = new javax.swing.JPanel();
@@ -100,6 +98,11 @@ public class userAccRec extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         Header.setBackground(new java.awt.Color(255, 204, 102));
         Header.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -110,14 +113,6 @@ public class userAccRec extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("    PASSWORD RECOVERY");
         Header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 840, 80));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
-            }
-        });
-        Header.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 80, 60));
 
         navi1.setBackground(new java.awt.Color(102, 102, 102));
         navi1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -154,15 +149,15 @@ public class userAccRec extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("   FORGOT PASSWORD");
-        Header1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 840, 80));
+        Header1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 840, 80));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                jLabel11MouseClicked(evt);
             }
         });
-        Header1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, 90, 60));
+        Header1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 0, 90, 70));
 
         jPanel1.add(Header1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1013, -1));
 
@@ -174,13 +169,10 @@ public class userAccRec extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         navi2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 230, 12));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/userb.png"))); // NOI18N
-        navi2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 110, 110));
-
-        accid1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        accid1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        accid1.setText("ID");
-        navi2.add(accid1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 90, 30));
+        uid.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        uid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        uid.setText("ID");
+        navi2.add(uid, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 90, 30));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel9.setText("CURRENT USER:");
@@ -191,15 +183,15 @@ public class userAccRec extends javax.swing.JFrame {
         acctype.setText("USERS");
         navi2.add(acctype, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 210, 30));
 
-        accfname.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        accfname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        accfname.setText("USERS");
-        navi2.add(accfname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 210, 30));
+        f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        f_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        f_name.setText("USERS");
+        navi2.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 210, 30));
 
-        acclname.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        acclname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acclname.setText("USERS");
-        navi2.add(acclname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 210, 30));
+        l_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        l_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l_name.setText("USERS");
+        navi2.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 210, 30));
 
         jPanel1.add(navi2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 280, 570));
 
@@ -273,12 +265,6 @@ public class userAccRec extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        adminDashboard adb = new adminDashboard();
-        adb.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
 
     private void confirm1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirm1MouseClicked
         //        dbConnect dbc = new dbConnect();
@@ -400,7 +386,7 @@ public class userAccRec extends javax.swing.JFrame {
 
             logEvent(userId, uname2, "User Changed Their Details");
 
-            adminDashboard ed = new adminDashboard();
+            UserDashboard ed = new UserDashboard();
             ed.setVisible(true);
             this.dispose();
         }
@@ -415,11 +401,20 @@ public class userAccRec extends javax.swing.JFrame {
         //        confirm.setBackground(d);
     }//GEN-LAST:event_confirm1MouseExited
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        UserDashboard adb = new UserDashboard();
-        adb.setVisible(true);
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        UserDashboard db = new UserDashboard();
+        db.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel7MouseClicked
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+         Session ses = Session.getInstance();
+        accid.setText(""+ses.getUid());
+         f_name.setText(""+ses.getFname());
+        l_name.setText(""+ses.getLname());
+        acctype.setText(""+ses.getLname());
+        
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -459,31 +454,29 @@ public class userAccRec extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Header1;
-    private javax.swing.JLabel accfname;
     private javax.swing.JLabel accid;
-    private javax.swing.JLabel accid1;
-    private javax.swing.JLabel acclname;
     private javax.swing.JLabel acctype;
     private javax.swing.JTextField anss;
     private javax.swing.JPanel confirm1;
+    private javax.swing.JLabel f_name;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel l_name;
     private javax.swing.JPanel navi1;
     private javax.swing.JPanel navi2;
     private javax.swing.JComboBox<String> sec;
+    private javax.swing.JLabel uid;
     // End of variables declaration//GEN-END:variables
 }

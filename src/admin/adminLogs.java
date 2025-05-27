@@ -26,26 +26,31 @@ public class adminLogs extends javax.swing.JFrame {
         displayData();
     }
     
-     public void displayData() {
-        try {
-            dbConnect dbc = new dbConnect();
-            ResultSet rs = dbc.getData(
-                "SELECT " +
-                "    l.log_id AS 'ID', " +
-                "    u.u_id AS 'User ID', " + 
-                "    u.u_un AS 'Username', " + 
-                "    l.log_action AS 'Log Action', " +
-                "    l.log_time AS 'Log Time' " +
-                "FROM logs l " + 
-                "JOIN users u ON l.u_id = u.u_id" 
-            );
-            actions.setModel(DbUtils.resultSetToTableModel(rs));
-            rs.close();
-        } catch (SQLException ex) {
-            System.out.println("Errors: " + ex.getMessage());
-            
-        }
+   public void displayData() {
+    try {
+        dbConnect dbc = new dbConnect(); // Your database connection handler
+
+        // SQL query to join logs with users to get additional user info including user type
+        String query = "SELECT " +
+                       "    l.log_id AS 'ID', " +
+                       "    u.u_id AS 'User ID', " +
+                       "    u.u_un AS 'Username', " +
+                       "    u.u_type AS 'User Type', " +
+                       "    l.log_action AS 'Log Action', " +
+                       "    l.log_time AS 'Log Time' " +
+                       "FROM logs l " +
+                       "JOIN users u ON l.u_id = u.u_id";
+
+        ResultSet rs = dbc.getData(query);
+
+        // Assuming 'actions' is your JTable for displaying logs
+        actions.setModel(DbUtils.resultSetToTableModel(rs));
+        rs.close();
+    } catch (SQLException ex) {
+        System.out.println("Errors: " + ex.getMessage());
+    }
 }
+
     public void NotShowDeletedUsers() {
         // Create a list to store filtered row data
         List<Object[]> rowData = new ArrayList<>();
@@ -62,7 +67,6 @@ public class adminLogs extends javax.swing.JFrame {
                 String fname = rs.getString("u_fname");
                 String lname = rs.getString("u_lname");
                 String un = rs.getString("u_username");
-//                String npass = rs.getString("u_pass");  
                 String contact = rs.getString("u_phone");
                 String type = rs.getString("u_type");
                 String status = rs.getString("u_status");
@@ -183,7 +187,7 @@ public class adminLogs extends javax.swing.JFrame {
             pstmt.setTimestamp(3, new Timestamp(new Date().getTime()));
             pstmt.setString(4, userType);*/
             pstmt.executeUpdate();
-            System.out.println("Login log recorded successfully.");
+            System.out.println("Log in log recorded successfully.");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error recording log: " + e.getMessage());
         } finally {
@@ -216,9 +220,15 @@ public class adminLogs extends javax.swing.JFrame {
         navi1 = new javax.swing.JPanel();
         accid = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        f_name = new javax.swing.JLabel();
+        l_name = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         actions.setModel(new javax.swing.table.DefaultTableModel(
@@ -266,9 +276,13 @@ public class adminLogs extends javax.swing.JFrame {
         jLabel8.setText("CURRENT USER:");
         navi1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 120, 30));
 
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel10.setText("USERS");
-        navi1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 90, 30));
+        f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        f_name.setText("USERS");
+        navi1.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 90, 30));
+
+        l_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        l_name.setText("USERS");
+        navi1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 90, 30));
 
         getContentPane().add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 180, 570));
 
@@ -281,6 +295,14 @@ public class adminLogs extends javax.swing.JFrame {
         adb.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+      Session ses = Session.getInstance();
+      accid.setText(""+ses.getUid());
+      f_name.setText(""+ses.getFname());
+        l_name.setText(""+ses.getLname());
+        
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -321,11 +343,12 @@ public class adminLogs extends javax.swing.JFrame {
     private javax.swing.JPanel Header;
     private javax.swing.JLabel accid;
     private javax.swing.JTable actions;
+    private javax.swing.JLabel f_name;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel l_name;
     private javax.swing.JPanel navi1;
     // End of variables declaration//GEN-END:variables
 }

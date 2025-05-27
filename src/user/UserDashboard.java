@@ -7,6 +7,7 @@ package user;
 
 import admin.adminAccRecovery;
 import admin.adminUsers;
+import admin.bookapproval;
 import config.Session;
 import config.dbConnect;
 import java.sql.Connection;
@@ -81,16 +82,22 @@ public class UserDashboard extends javax.swing.JFrame {
         navi1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        firstn = new javax.swing.JLabel();
-        lastn = new javax.swing.JLabel();
+        f_name = new javax.swing.JLabel();
+        l_name = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         passrecov = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        bookss = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -159,15 +166,15 @@ public class UserDashboard extends javax.swing.JFrame {
 
         navi1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 140, 140));
 
-        firstn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        firstn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        firstn.setText("USER");
-        navi1.add(firstn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 140, -1));
+        f_name.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        f_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        f_name.setText("USER");
+        navi1.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 140, -1));
 
-        lastn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lastn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lastn.setText("USER");
-        navi1.add(lastn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 140, -1));
+        l_name.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        l_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l_name.setText("USER");
+        navi1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 140, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logosmallerver.png"))); // NOI18N
         navi1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 130, 110));
@@ -179,6 +186,11 @@ public class UserDashboard extends javax.swing.JFrame {
         passrecov.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passrecovMouseClicked(evt);
+            }
+        });
+        passrecov.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passrecovKeyPressed(evt);
             }
         });
         passrecov.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -195,29 +207,73 @@ public class UserDashboard extends javax.swing.JFrame {
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accrec.png"))); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
         passrecov.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 56, 130, 110));
 
         Mainpanel1.add(passrecov, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 170, 180));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        bookss.setBackground(new java.awt.Color(204, 204, 204));
+        bookss.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        bookss.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel2MouseClicked(evt);
+                bookssMouseClicked(evt);
             }
         });
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("BOOKS");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, 30));
+        bookss.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookss.png"))); // NOI18N
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 100, 70));
+        bookss.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 100, 70));
 
-        Mainpanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 110, 170, 180));
+        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel4MouseClicked(evt);
+            }
+        });
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("BOOKS");
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, 30));
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookss.png"))); // NOI18N
+        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 100, 70));
+
+        bookss.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 110, 170, 180));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("BOOKS");
+        bookss.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, 30));
+
+        Mainpanel1.add(bookss, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 110, 170, 180));
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/inventory.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 100, 90));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("INVENTORY");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 150, 30));
+
+        Mainpanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 170, 180));
 
         getContentPane().add(Mainpanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 650));
 
@@ -227,18 +283,11 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
        Session ses = Session.getInstance();
-      
-
-        if (ses.getUid() == 0) {
-            JOptionPane.showMessageDialog(null, "No account, Login First!");
-            loginForm lf = new loginForm();
-            lf.setVisible(true);
-            this.dispose();
-        }else{
+     
             
-        firstn.setText(""+ses.getFname());
-        lastn.setText(""+ses.getLname());
-        }
+        f_name.setText(""+ses.getFname());
+        l_name.setText(""+ses.getLname());
+        
 
     }//GEN-LAST:event_formWindowActivated
 
@@ -249,7 +298,7 @@ public class UserDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_acdMouseClicked
 
     private void passrecovMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passrecovMouseClicked
-        adminAccRecovery aar = new adminAccRecovery();
+        userAccRec aar = new userAccRec();
         aar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_passrecovMouseClicked
@@ -260,11 +309,31 @@ public class UserDashboard extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+    private void bookssMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookssMouseClicked
         dispBooks dp = new dispBooks();
         dp.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jPanel2MouseClicked
+    }//GEN-LAST:event_bookssMouseClicked
+
+    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel4MouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+      dispInv dp = new dispInv();
+        dp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+       
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void passrecovKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passrecovKeyPressed
+        userAccRec aar = new userAccRec();
+        aar.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_passrecovKeyPressed
 
     /**
      * @param args the command line arguments
@@ -305,12 +374,17 @@ public class UserDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel Header1;
     private javax.swing.JPanel Mainpanel1;
     private javax.swing.JPanel acd;
-    private javax.swing.JLabel firstn;
+    private javax.swing.JPanel bookss;
+    private javax.swing.JLabel f_name;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -318,9 +392,10 @@ public class UserDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lastn;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel l_name;
     private javax.swing.JPanel navi1;
     private javax.swing.JPanel passrecov;
     // End of variables declaration//GEN-END:variables

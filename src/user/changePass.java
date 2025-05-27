@@ -73,10 +73,10 @@ public class changePass extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         navi = new javax.swing.JPanel();
-        fname = new javax.swing.JLabel();
-        iddisp = new javax.swing.JLabel();
+        f_name = new javax.swing.JLabel();
+        uid = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        lname = new javax.swing.JLabel();
+        l_name = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -97,6 +97,11 @@ public class changePass extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Header.setBackground(new java.awt.Color(255, 204, 102));
@@ -118,24 +123,24 @@ public class changePass extends javax.swing.JFrame {
         navi.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         navi.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        fname.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        fname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        fname.setText("USER");
-        navi.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 290, 40));
+        f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        f_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        f_name.setText("USER");
+        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 290, 40));
 
-        iddisp.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        iddisp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        iddisp.setText("UID:");
-        navi.add(iddisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 480, 90, 40));
+        uid.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        uid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        uid.setText("UID:");
+        navi.add(uid, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 480, 90, 40));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("USERS ID:");
         navi.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 120, 40));
 
-        lname.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lname.setText("USER");
-        navi.add(lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 290, 40));
+        l_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        l_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l_name.setText("USER");
+        navi.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 290, 40));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
 
@@ -350,9 +355,12 @@ public class changePass extends javax.swing.JFrame {
 
                     int rowsUpdated = updateData.executeUpdate();
                     if (rowsUpdated > 0) {
-                        loginForm lg = new loginForm();
-                        lg.setVisible(true);
-                        this.dispose();
+//                        loginForm lg = new loginForm();
+//                        lg.setVisible(true);
+//                        this.dispose();
+                            accDetails adb = new accDetails();
+                            adb.setVisible(true);
+                            this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Error updating password!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
@@ -427,6 +435,14 @@ public class changePass extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Session ses = Session.getInstance();
+        uid.setText(""+ses.getUid());
+        f_name.setText(""+ses.getFname());
+        l_name.setText(""+ses.getLname());
+        
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -468,8 +484,7 @@ public class changePass extends javax.swing.JFrame {
     private javax.swing.JPasswordField conpas;
     private javax.swing.JCheckBox cpas;
     private javax.swing.JLabel cpslab;
-    private javax.swing.JLabel fname;
-    private javax.swing.JLabel iddisp;
+    private javax.swing.JLabel f_name;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -481,12 +496,13 @@ public class changePass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lname;
+    private javax.swing.JLabel l_name;
     private javax.swing.JPanel navi;
     private javax.swing.JPasswordField newpas;
     private javax.swing.JLabel npslab;
     private javax.swing.JLabel oldlab;
     private javax.swing.JTextField oldpas;
     private javax.swing.JPanel saved;
+    private javax.swing.JLabel uid;
     // End of variables declaration//GEN-END:variables
 }

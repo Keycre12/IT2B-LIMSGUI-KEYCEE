@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import limsgui.loginForm;
+import user.dispBooks;
 
 /**
  *
@@ -43,7 +44,7 @@ public class adminDashboard extends javax.swing.JFrame {
             pstmt = con.prepareStatement(sql);
 
             pstmt.executeUpdate();
-            System.out.println("Login Log recorded successfully.");
+            System.out.println("Log in Log recorded successfully.");
         } catch (SQLException e) 
         {
             JOptionPane.showMessageDialog(null, "Error recording log: " + e.getMessage());
@@ -91,6 +92,16 @@ public class adminDashboard extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        bookss = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -223,6 +234,70 @@ public class adminDashboard extends javax.swing.JFrame {
 
         Mainpanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 560, 70, 80));
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/approval.png"))); // NOI18N
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 80, 90));
+
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("BOOKS");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 150, 30));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("APPROVE");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 30));
+
+        Mainpanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 170, 180));
+
+        bookss.setBackground(new java.awt.Color(204, 204, 204));
+        bookss.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        bookss.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookssMouseClicked(evt);
+            }
+        });
+        bookss.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookss.png"))); // NOI18N
+        bookss.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 100, 70));
+
+        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel4MouseClicked(evt);
+            }
+        });
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("BOOKS");
+        jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, 30));
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookss.png"))); // NOI18N
+        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 100, 70));
+
+        bookss.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 110, 170, 180));
+
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("BOOKS");
+        bookss.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, 30));
+
+        Mainpanel.add(bookss, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 170, 180));
+
         getContentPane().add(Mainpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 650));
 
         pack();
@@ -288,6 +363,22 @@ public class adminDashboard extends javax.swing.JFrame {
            this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        bookapproval als = new bookapproval();
+        als.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel4MouseClicked
+
+    private void bookssMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookssMouseClicked
+        dispBooks dp = new dispBooks();
+        dp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_bookssMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -326,9 +417,17 @@ public class adminDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Mainpanel;
+    private javax.swing.JPanel bookss;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -338,7 +437,9 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel logout;
     private javax.swing.JPanel logs;
     private javax.swing.JPanel navi;
