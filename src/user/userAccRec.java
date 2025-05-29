@@ -73,10 +73,8 @@ public class userAccRec extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         navi1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
         accid = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Header1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -85,7 +83,6 @@ public class userAccRec extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         uid = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        acctype = new javax.swing.JLabel();
         f_name = new javax.swing.JLabel();
         l_name = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -122,9 +119,6 @@ public class userAccRec extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         navi1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 230, 12));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limsgui/images/userb.png"))); // NOI18N
-        navi1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 110));
-
         accid.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         accid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         accid.setText("ID");
@@ -133,10 +127,6 @@ public class userAccRec extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel8.setText("CURRENT USER:");
         navi1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 210, 30));
-
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel10.setText("USERS");
-        navi1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 90, 30));
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -157,7 +147,7 @@ public class userAccRec extends javax.swing.JFrame {
                 jLabel11MouseClicked(evt);
             }
         });
-        Header1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 0, 90, 70));
+        Header1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, 90, 70));
 
         jPanel1.add(Header1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1013, -1));
 
@@ -178,20 +168,15 @@ public class userAccRec extends javax.swing.JFrame {
         jLabel9.setText("CURRENT USER:");
         navi2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 210, 30));
 
-        acctype.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        acctype.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acctype.setText("USERS");
-        navi2.add(acctype, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 210, 30));
-
         f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         f_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         f_name.setText("USERS");
-        navi2.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 210, 30));
+        navi2.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 210, 30));
 
         l_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         l_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l_name.setText("USERS");
-        navi2.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 210, 30));
+        navi2.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 210, 30));
 
         jPanel1.add(navi2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 280, 570));
 
@@ -412,7 +397,7 @@ public class userAccRec extends javax.swing.JFrame {
         accid.setText(""+ses.getUid());
          f_name.setText(""+ses.getFname());
         l_name.setText(""+ses.getLname());
-        acctype.setText(""+ses.getLname());
+
         
     }//GEN-LAST:event_formWindowActivated
 
@@ -455,16 +440,13 @@ public class userAccRec extends javax.swing.JFrame {
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Header1;
     private javax.swing.JLabel accid;
-    private javax.swing.JLabel acctype;
     private javax.swing.JTextField anss;
     private javax.swing.JPanel confirm1;
     private javax.swing.JLabel f_name;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;

@@ -183,7 +183,7 @@ public class soloprintbooks extends javax.swing.JFrame {
         page.add(JPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 114, 240, 320));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/oksnato.png"))); // NOI18N
-        page.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 90, 90));
+        page.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 90, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

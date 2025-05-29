@@ -60,7 +60,6 @@ public class dispBooks extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         navi = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
         accid = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         p_add = new javax.swing.JPanel();
@@ -108,9 +107,6 @@ public class dispBooks extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         navi.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 230, 12));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userb.png"))); // NOI18N
-        navi.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 110));
 
         accid.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         accid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -168,8 +164,9 @@ public class dispBooks extends javax.swing.JFrame {
         navi.add(p_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 230, 50));
 
         f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        f_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         f_name.setText("USERS");
-        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 90, 30));
+        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 220, 30));
 
         p_delete.setBackground(new java.awt.Color(102, 102, 102));
         p_delete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -527,7 +524,6 @@ public class dispBooks extends javax.swing.JFrame {
     private javax.swing.JLabel f_name;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package limsgui;
 
 import config.dbConnect;
@@ -26,9 +22,7 @@ import javax.swing.JOptionPane;
 import java.util.regex.Pattern;
 public class registrationForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form registrationForm
-     */
+
     public registrationForm() {
         initComponents();
     }
@@ -42,20 +36,20 @@ public class registrationForm extends javax.swing.JFrame {
         if (resultSet.next()) {
             if (resultSet.getString("u_email").equals(email.getText())) {
                 JOptionPane.showMessageDialog(null, "Email is already used!");
-                email.setText("");  // Clear email field
-                return true;  // Stop further checks
+                email.setText("");  
+                return true;  
             }
 
             if (resultSet.getString("u_un").equals(un.getText())) {
                 JOptionPane.showMessageDialog(null, "Username is already used!!");
-                un.setText("");  // Clear username field
-                return true;  // Stop further checks
+                un.setText(""); 
+                return true; 
             }
         }
     } catch (SQLException ex) {
         System.out.println("SQL Error: " + ex);
     }
-    return false;  // No duplicate found
+    return false;  
 }
    
     public void logEvent(int userId, String username, String action) 
@@ -76,7 +70,7 @@ public class registrationForm extends javax.swing.JFrame {
         } catch (SQLException e) 
         {
             JOptionPane.showMessageDialog(null, "Error recording log: " + e.getMessage());
-        } finally //This is a database closer
+        } finally 
         {
             try 
             {
@@ -333,7 +327,7 @@ public class registrationForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void unActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_unActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -343,7 +337,7 @@ public class registrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_emailActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

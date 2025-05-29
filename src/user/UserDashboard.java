@@ -320,7 +320,7 @@ public class UserDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-      dispInv dp = new dispInv();
+        bookInventory dp = new bookInventory();
         dp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel1MouseClicked

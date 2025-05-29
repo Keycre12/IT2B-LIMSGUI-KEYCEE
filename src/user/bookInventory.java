@@ -184,8 +184,9 @@ public class bookInventory extends javax.swing.JFrame {
         navi.add(p_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 190, 50));
 
         f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        f_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         f_name.setText("USERS");
-        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 90, 30));
+        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 230, 30));
 
         p_delete.setBackground(new java.awt.Color(102, 102, 102));
         p_delete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

@@ -173,8 +173,9 @@ public class adminUsers extends javax.swing.JFrame {
         navi.add(p_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 230, 50));
 
         f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        f_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         f_name.setText("USERS");
-        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 90, 30));
+        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 220, 30));
 
         p_delete.setBackground(new java.awt.Color(102, 102, 102));
         p_delete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -200,8 +201,9 @@ public class adminUsers extends javax.swing.JFrame {
         navi.add(p_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 230, 50));
 
         l_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        l_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l_name.setText("USERS");
-        navi.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 90, 30));
+        navi.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 220, 30));
 
         Mainpanel.add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 280, 570));
 

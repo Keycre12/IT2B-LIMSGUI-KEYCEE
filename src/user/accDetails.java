@@ -5,15 +5,19 @@
  */
 package user;
 
+import admin.createUserForm;
 import config.Session;
 import config.dbConnect;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import limsgui.loginForm;
 
@@ -136,7 +140,7 @@ public class accDetails extends javax.swing.JFrame {
         f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         f_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         f_name.setText("USER");
-        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 70, 40));
+        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 260, 40));
 
         p_add1.setBackground(new java.awt.Color(102, 102, 102));
         p_add1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -185,15 +189,16 @@ public class accDetails extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(null);
 
-        image.setText("jLabel2");
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sluser.png"))); // NOI18N
         jPanel1.add(image);
-        image.setBounds(9, 9, 130, 140);
+        image.setBounds(10, 10, 120, 130);
 
         navi.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 140, 150));
 
         l_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        l_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l_name.setText("USER");
-        navi.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
+        navi.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 250, -1));
 
         getContentPane().add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 280, 570));
 
@@ -447,7 +452,7 @@ public class accDetails extends javax.swing.JFrame {
         phone.setText(""+ses.getLname());
         email.setText(""+ses.getEmail());
         uns.setText(""+ses.getUsername());
-
+        
         }
     }//GEN-LAST:event_formWindowActivated
 

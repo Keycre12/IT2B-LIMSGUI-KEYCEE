@@ -249,7 +249,6 @@ public class loginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameActionPerformed
 
     private void regsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regsMouseClicked
-       
         registrationForm rfm = new registrationForm();
         rfm.setVisible(true);
         this.dispose();

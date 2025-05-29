@@ -68,7 +68,7 @@ public class bookapproval extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         approvebook.setModel(new javax.swing.table.DefaultTableModel(
@@ -81,7 +81,7 @@ public class bookapproval extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(approvebook);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 810, 510));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 760, 530));
 
         Header.setBackground(new java.awt.Color(255, 204, 102));
         Header.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -110,15 +110,16 @@ public class bookapproval extends javax.swing.JFrame {
         accid.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         accid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         accid.setText("ID");
-        navi1.add(accid, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 90, 30));
+        navi1.add(accid, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 90, 30));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("CURRENT USER:");
-        navi1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 120, 30));
+        navi1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, 120, 30));
 
         f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        f_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         f_name.setText("USERS");
-        navi1.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 90, 30));
+        navi1.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 190, 30));
 
         approve.setBackground(new java.awt.Color(51, 153, 0));
         approve.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -128,7 +129,7 @@ public class bookapproval extends javax.swing.JFrame {
                 approveActionPerformed(evt);
             }
         });
-        navi1.add(approve, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 120, 40));
+        navi1.add(approve, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 120, 40));
 
         decline.setBackground(new java.awt.Color(204, 0, 0));
         decline.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -138,13 +139,14 @@ public class bookapproval extends javax.swing.JFrame {
                 declineActionPerformed(evt);
             }
         });
-        navi1.add(decline, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 120, 40));
+        navi1.add(decline, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 120, 40));
 
         l_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        l_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l_name.setText("USERS");
-        navi1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 90, 30));
+        navi1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 190, 30));
 
-        jPanel1.add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 180, 570));
+        jPanel1.add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 220, 570));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,9 +207,9 @@ public class bookapproval extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) approvebook.getModel();
                 model.removeRow(selectedRow);
                 displayData(); 
-//                bookInventory bi = new bookInventory();
-//                bi.setVisible(true);
-//                this.dispose(); // Close approval window
+                bookInventory bi = new bookInventory();
+                bi.setVisible(true);
+                this.dispose(); // Close approval window
             } else {
                 JOptionPane.showMessageDialog(null, "Error while approving the book.");
             }

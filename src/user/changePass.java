@@ -126,7 +126,7 @@ public class changePass extends javax.swing.JFrame {
         f_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         f_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         f_name.setText("USER");
-        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 290, 40));
+        navi.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 290, 40));
 
         uid.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         uid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -140,7 +140,7 @@ public class changePass extends javax.swing.JFrame {
         l_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         l_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l_name.setText("USER");
-        navi.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 290, 40));
+        navi.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 290, 40));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
 
@@ -163,7 +163,7 @@ public class changePass extends javax.swing.JFrame {
 
         navi.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 140, 140));
 
-        getContentPane().add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 570));
+        getContentPane().add(navi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 530));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("Confirm Pass:");

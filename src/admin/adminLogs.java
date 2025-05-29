@@ -241,7 +241,7 @@ public class adminLogs extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(actions);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 830, 530));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 810, 530));
 
         Header.setBackground(new java.awt.Color(255, 204, 102));
         Header.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -284,7 +284,7 @@ public class adminLogs extends javax.swing.JFrame {
         l_name.setText("USERS");
         navi1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 90, 30));
 
-        getContentPane().add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 76, 180, 570));
+        getContentPane().add(navi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 550));
 
         pack();
         setLocationRelativeTo(null);
